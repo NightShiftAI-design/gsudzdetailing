@@ -40,16 +40,38 @@
   <main id="top">
     <section class="hero">
       <div class="hero__bubbles" aria-hidden="true"></div>
+      <div class="hero__track" aria-hidden="true"></div>
 
       <div class="container hero__inner">
         <div class="hero__copy">
-          <p class="kicker">Auto • Marine • RV • Motorcycle</p>
-          <h1 class="h1">Premium Detailing<br><span class="h1__glow">That Makes It Look New</span></h1>
+          <p class="kicker">AUTO • MARINE • RV • MOTORCYCLE</p>
+
+          <h1 class="h1">
+            Enthusiast-Grade Detailing<br>
+            <span class="h1__glow">Built For A Showroom Finish</span>
+          </h1>
 
           <p class="lead">
             Serving <strong>Dayton, TN</strong> and the Rhea County area — including Spring City and Bluewater Resort & Marina.
-            Friendly local service, enthusiast-grade finishes.
+            Clean. Protected. Corrected.
           </p>
+
+          <!-- Track HUD -->
+          <div class="hud">
+            <div class="hud__row">
+              <span class="hud__tag">MOBILE DETAILING</span>
+              <span class="hud__tag">CERAMIC COAT</span>
+              <span class="hud__tag">PAINT CORRECTION</span>
+              <span class="hud__tag">RV / MARINE</span>
+            </div>
+            <div class="hud__meta">
+              <span class="hud__dot"></span> Dayton, TN
+              <span class="hud__sep">/</span>
+              Response: <strong>Fast text quotes</strong>
+              <span class="hud__sep">/</span>
+              Finish: <strong>High-gloss protection</strong>
+            </div>
+          </div>
 
           <div class="hero__cta">
             <a class="btn btn--accent" href="#book">Get Quote / Book</a>
@@ -72,6 +94,23 @@
 
         <div class="hero__card">
           <div class="glass-card">
+            <div class="spec">
+              <div class="spec__row">
+                <span class="spec__label">STATUS</span>
+                <span class="spec__value"><span class="spec__dot"></span> ACCEPTING BOOKINGS</span>
+              </div>
+              <div class="spec__row">
+                <span class="spec__label">SERVICE</span>
+                <span class="spec__value">AUTO / TRUCK / RV / MARINE / BIKE</span>
+              </div>
+              <div class="spec__row">
+                <span class="spec__label">QUOTE</span>
+                <span class="spec__value">TEXT PHOTOS FOR FASTEST</span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
             <h2 class="h2">Quick Actions</h2>
 
             <div class="quick-grid">
@@ -94,10 +133,8 @@
               </a>
             </div>
 
-            <div class="divider"></div>
-
             <p class="muted">
-              Want the fastest response? Text a photo + your vehicle + what you want done.
+              Fastest response: text a photo + your vehicle + what you want done.
             </p>
 
             <div class="stack">
@@ -117,6 +154,7 @@
           <p class="muted">Clear starting prices for cars/trucks. For RVs/boats/bikes and heavy correction work, request a quote.</p>
         </div>
 
+        <!-- Pricing grid stays same markup; styles will make it feel like an estimate sheet -->
         <div class="cards">
           <article class="card">
             <h3 class="h3">Premium Exterior Wash</h3>
@@ -273,9 +311,7 @@
           <button class="chip" data-filter="bikes">Bikes</button>
         </div>
 
-        <div class="gallery-grid" id="galleryGrid" aria-live="polite">
-          <!-- JS inserts items -->
-        </div>
+        <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
 
         <div class="center">
           <a class="btn btn--glass" href="https://www.facebook.com/profile.php?id=61561183088796" target="_blank" rel="noopener">More Work on Facebook</a>
@@ -356,14 +392,8 @@
             <button class="tab" role="tab" aria-selected="false" data-tab="quote">Get Quote (RVs/Boats/Bikes/Plans)</button>
           </div>
 
-          <!-- IMPORTANT:
-               Replace FORMSPREE_ENDPOINT with your actual Formspree URL (we’ll do this after we create the Formspree form).
-               Example: https://formspree.io/f/abcdwxyz
-          -->
           <form id="leadForm" class="leadform" method="POST" action="FORMSPREE_ENDPOINT">
-            <!-- Honeypot -->
             <input type="text" name="website" id="website" autocomplete="off" tabindex="-1" aria-hidden="true" class="hp" />
-
             <input type="hidden" name="formType" id="formType" value="book" />
 
             <div class="grid">
@@ -425,7 +455,6 @@
               </label>
             </div>
 
-            <!-- Add-ons (book tab only, but harmless if sent) -->
             <div class="addons-box" id="addonsBox">
               <p class="muted"><strong>Add-ons</strong> (optional)</p>
               <div class="checks">
@@ -439,7 +468,6 @@
               </div>
             </div>
 
-            <!-- Quote-only fields -->
             <div class="quote-box" id="quoteBox" hidden>
               <div class="grid">
                 <label class="field">
