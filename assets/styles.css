@@ -667,3 +667,23 @@ a:hover { opacity: .95; }
 
   .mobilebar { display: grid; }
 }
+/* =========================
+   Cursor ripple bubbles (Hero only)
+   ========================= */
+.ripple-bubble {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  border: 1px solid rgba(215, 222, 232, 0.20);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0.06) 55%, rgba(255,255,255,0.02));
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 0.0;
+  filter: blur(1px);
+  animation: ripplePop 900ms ease-out forwards;
+}
+
+@keyframes ripplePop {
+  0%   { opacity: 0.0; transform: translate(-50%, -50%) scale(0.55); }
+  15%  { opacity: 0.18; }
+  100% { opacity: 0.0; transform: translate(-50%, -50%) scale(1.35); }
+}
