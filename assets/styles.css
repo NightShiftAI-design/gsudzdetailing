@@ -378,6 +378,148 @@
       spawnRipple(t.clientX, t.clientY);
     }, { passive: true });
   }
+    /* =========================
+   V2 ADD-ONS (Track HUD / Spec Sheet)
+   Paste at bottom of styles.css
+   ========================= */
+
+/* track layer behind hero */
+.hero__track{
+  position:absolute;
+  inset:-10% -10% -10% -10%;
+  pointer-events:none;
+  opacity:.75;
+  background:
+    radial-gradient(900px 420px at 70% 10%, rgba(45,125,255,0.20), transparent 60%),
+    radial-gradient(700px 360px at 15% 40%, rgba(54,245,197,0.10), transparent 60%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 22px,
+      rgba(255,255,255,0.04) 23px,
+      rgba(255,255,255,0.00) 24px
+    );
+  mask-image: radial-gradient(circle at 35% 35%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 72%);
+  filter: blur(0px);
+}
+
+/* HUD block */
+.hud{
+  margin: 16px 0 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+}
+
+.hud__row{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.hud__tag{
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: rgba(233,238,247,0.86);
+  position: relative;
+  overflow: hidden;
+}
+
+.hud__tag::after{
+  content:"";
+  position:absolute;
+  inset:-40% -60%;
+  background: var(--shine);
+  opacity: .08;
+  transform: translateX(-40%) rotate(8deg);
+  pointer-events:none;
+}
+
+.hud__meta{
+  font-size: 13px;
+  color: var(--text-1);
+  display:flex;
+  align-items:center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hud__sep{ opacity:.55; }
+
+.hud__dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(54,245,197,0.14);
+  display:inline-block;
+}
+
+/* Spec sheet inside hero card */
+.spec{
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.16);
+  border-radius: 14px;
+  padding: 12px 12px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+  margin-bottom: 14px;
+}
+
+.spec__row{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.spec__row:last-child{ border-bottom: 0; }
+
+.spec__label{
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(169,178,195,0.85);
+}
+
+.spec__value{
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(233,238,247,0.92);
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  text-align: right;
+}
+
+.spec__dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(54,245,197,0.12);
+}
+
+/* hero spacing tweak so it feels more premium */
+.hero__copy .lead{ margin-top: 10px; }
+
+/* keep it clean on small screens */
+@media (max-width: 640px){
+  .spec__value{ letter-spacing: .08em; }
+  .hud{ padding: 10px 12px; }
+}
+
 
   initBubbles();
   initCursorRipples();
