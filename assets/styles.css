@@ -328,13 +328,23 @@ a:hover { opacity: .95; }
 .card::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -40% -60%;
   background: var(--shine);
   opacity: 0;
-  transition: opacity .2s ease;
+  transform: translateX(-40%) rotate(8deg);
+  pointer-events: none;
 }
 
-.card:hover::after { opacity: .25; }
+.card:hover::after {
+  opacity: .22;
+  animation: shineSweep 850ms ease-out forwards;
+}
+
+@keyframes shineSweep {
+  0%   { transform: translateX(-55%) rotate(8deg); opacity: 0; }
+  15%  { opacity: .22; }
+  100% { transform: translateX(55%) rotate(8deg); opacity: 0; }
+}
 
 .card--featured {
   outline: 2px solid rgba(54,245,197,0.35);
