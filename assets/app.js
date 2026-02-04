@@ -320,4 +320,61 @@
   }
 
   initBubbles();
+     // ---------- Cursor ripple bubbles (Hero only) ----------
+  function initCursorRipples() {
+    if (prefersReducedMotion) return;
+
+    const hero = $(".hero");
+    const holder = $(".hero__bubbles"); // attach ripples to the bubble layer
+    if (!hero || !holder) return;
+
+    let lastTime = 0;
+    const rateLimitMs = 333; // ~3 per second (tasteful)
+    const maxOnScreen = 18;
+
+    function spawnRipple(clientX, clientY) {
+      const rect = hero.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      // only if inside hero bounds
+      if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
+
+      const b = document.createElement("div");
+      b.className = "ripple-bubble";
+
+      const size = rand(14, 32);
+      b.style.width = `${size}px`;
+      b.style.height = `${size}px`;
+      b.style.left = `${(x / rect.width) * 100}%`;
+      b.style.top = `${(y / rect.height) * 100}%`;
+
+      holder.appendChild(b);
+
+      // cleanup
+      setTimeout(() => b.remove(), 950);
+
+      // keep DOM tidy
+      const ripples = $$(".ripple-bubble", holder);
+      if (ripples.length > maxOnScreen) {
+        ripples.slice(0, ripples.length - maxOnScreen).forEach(n => n.remove());
+      }
+    }
+
+    hero.addEventListener("mousemove", (e) => {
+      const now = performance.now();
+      if (now - lastTime < rateLimitMs) return;
+      lastTime = now;
+      spawnRipple(e.clientX, e.clientY);
+    });
+
+    // Mobile: tap bubbles (single pop)
+    hero.addEventListener("touchstart", (e) => {
+      const t = e.touches && e.touches[0];
+      if (!t) return;
+      spawnRipple(t.clientX, t.clientY);
+    }, { passive: true });
+  }
+
+  initCursorRipples();
 })();
