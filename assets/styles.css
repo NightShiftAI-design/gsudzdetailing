@@ -237,9 +237,9 @@ a:hover { opacity: .98; }
 }
 
 /* ✅ Replace these URLs with your images later (or keep placeholders) */
-.hero__photo--1 { background-image: url("images/hero-1.jpg"); }
-.hero__photo--2 { background-image: url("images/hero-2.jpg"); }
-.hero__photo--3 { background-image: url("images/hero-3.jpg"); }
+.hero__photo--1 { background-image: url("gallery/corolla2after.JPG"); }
+.hero__photo--2 { background-image: url("gallery/gwagensideshotafter.JPG"); }
+.hero__photo--3 { background-image: url("gallery/sexycar3.JPG"); }
 
 .hero__overlay{
   position: absolute;
