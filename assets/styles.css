@@ -889,6 +889,25 @@ a:hover { opacity: .98; }
   font-size: 13px;
   line-height: 1.5;
 }
+/* =========================
+   Footer legal (Privacy link)
+   ========================= */
+.footer__legal{
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: .75;
+}
+
+.footer__legal a{
+  color: rgba(233,238,247,0.75);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__legal a:hover{
+  opacity: 1;
+  text-decoration-color: rgba(111,231,208,0.35);
+}
 
 /* =========================
    Sticky mobile bar (single source of truth)
