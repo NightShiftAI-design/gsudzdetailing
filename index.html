@@ -6,12 +6,35 @@
   <meta name="description" content="Premium auto detailing in Dayton, TN. Professional interior & exterior detailing, paint correction, and ceramic coating. Mobile and shop appointments available." />
   <title>Gsudz Detailing — Dayton, TN</title>
 
+  <!-- Share / SEO -->
+  <meta property="og:title" content="Gsudz Detailing — Dayton, TN" />
+  <meta property="og:description" content="Premium detailing in Dayton, TN. Interior, exterior, ceramic coating, paint correction. Mobile appointments available." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gsudzdetailing.vercel.app/" />
+  <meta property="og:image" content="https://gsudzdetailing.vercel.app/favicon-512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <!-- Favicons (update paths if your filenames differ) -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
   <link rel="manifest" href="assets/favicons/site.webmanifest">
   <meta name="theme-color" content="#0A0E14">
+
+  <!-- LocalBusiness schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"AutoDetailing",
+    "name":"Gsudz Detailing",
+    "areaServed":["Dayton, TN","Rhea County, TN","Spring City, TN"],
+    "telephone":"+1-423-394-1698",
+    "email":"gavdetails01@gmail.com",
+    "url":"https://gsudzdetailing.vercel.app/",
+    "sameAs":["https://www.facebook.com/profile.php?id=61561183088796"],
+    "openingHours":["Mo-Fr 07:00-17:00"]
+  }
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +49,6 @@
   <header class="topbar">
     <div class="container topbar__inner">
       <a class="brand" href="#top" aria-label="Gsudz Detailing home">
-        <!-- Logo (same asset family as favicon) -->
         <img class="brand__logo" src="/favicon-512.png" alt="Gsudz Detailing logo" />
         <span class="brand__text">
           <span class="brand__name">Gsudz Detailing</span>
@@ -39,12 +61,11 @@
         <span class="topbar__hours">Hours: <strong>7:00 AM – 5:00 PM</strong> (Mon–Fri)</span>
       </div>
 
+      <!-- Simplified actions: 1 primary -->
       <nav class="topbar__actions" aria-label="Primary actions">
         <a class="btn btn--ghost btn--sm" href="#packages">Pricing</a>
-        <a class="btn btn--ghost btn--sm" href="#gallery">Gallery</a>
-        <a class="btn btn--primary btn--sm" href="tel:+14233941698">Call</a>
-        <a class="btn btn--glass btn--sm" href="sms:+14233941698?&body=Hi%20Gsudz%20Detailing%2C%20I%27d%20like%20a%20quote.%20My%20vehicle%20is%3A%20_____%20Service%20wanted%3A%20_____%20My%20location%3A%20_____%20Preferred%20date%2Ftime%3A%20_____.">Text</a>
-        <a class="btn btn--accent btn--sm" href="#book">Get Quote</a>
+        <a class="btn btn--primary btn--sm" href="#book">Get a Fast Quote</a>
+        <a class="btn btn--glass btn--sm" href="tel:+14233941698">Call</a>
       </nav>
     </div>
   </header>
@@ -52,7 +73,7 @@
   <!-- Hero -->
   <main id="top">
     <section class="hero">
-      <!-- Photo strip (CSS handles overlay) -->
+      <!-- Photo strip -->
       <div class="hero__media" aria-hidden="true">
         <div class="hero__photos">
           <div class="hero__photo hero__photo--1"></div>
@@ -97,16 +118,17 @@
             </div>
           </div>
 
-          <!-- HERO CTAs (simplified) -->
+          <!-- HERO CTAs -->
           <div class="hero__cta">
             <a class="btn btn--accent" href="#book">Get a Fast Quote</a>
-            <a class="btn btn--ghost" href="#packages">See Packages</a>
+            <a class="btn btn--link" href="#packages">See Pricing</a>
           </div>
 
-          <!-- Trust pills -->
+          <!-- Trust pills (stronger proof) -->
           <div class="hero__trust">
-            <div class="pill">Mobile • Pick-up • Drop-off</div>
-            <div class="pill">900+ Followers</div>
+            <div class="pill">Fast quote by text</div>
+            <div class="pill">Before/After results below</div>
+            <div class="pill">Trusted locally (Facebook reviews)</div>
           </div>
 
           <div class="hero__contact">
@@ -139,31 +161,41 @@
 
             <div class="quick-grid">
               <a class="quick" href="#packages">
-                <span class="quick__icon" aria-hidden="true">💦</span>
+                <span class="quick__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22">
+                    <path fill="currentColor" d="M12 2s7 7.2 7 12.2A7 7 0 1 1 5 14.2C5 9.2 12 2 12 2z"/>
+                  </svg>
+                </span>
                 <span class="quick__title">Packages & Pricing</span>
                 <span class="quick__sub">Exterior, interior, full detail</span>
               </a>
 
               <a class="quick" href="#ceramic">
-                <span class="quick__icon" aria-hidden="true">✨</span>
+                <span class="quick__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22">
+                    <path fill="currentColor" d="M12 2l1.7 5.3L19 9l-5.3 1.7L12 16l-1.7-5.3L5 9l5.3-1.7L12 2z"/>
+                  </svg>
+                </span>
                 <span class="quick__title">Ceramic Protection</span>
                 <span class="quick__sub">GYEON + prep process</span>
               </a>
 
               <a class="quick" href="#rvmarine">
-                <span class="quick__icon" aria-hidden="true">🚤</span>
+                <span class="quick__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22">
+                    <path fill="currentColor" d="M3 17l8-3 2-9h2l2 7 2 2-10 7H3z"/>
+                  </svg>
+                </span>
                 <span class="quick__title">RVs • Boats • Bikes</span>
                 <span class="quick__sub">Quote required</span>
               </a>
             </div>
 
-            <p class="muted">
-              Fastest response: text a photo + your vehicle + what you want done.
-            </p>
+            <p class="muted">Fastest response: text a photo + your vehicle + what you want done.</p>
 
             <div class="stack">
-              <a class="btn btn--primary" href="sms:+14233941698?&body=Hi%20Gsudz%20Detailing%2C%20I%27d%20like%20a%20quote.%20My%20vehicle%20is%3A%20_____%20Service%20wanted%3A%20_____%20My%20location%3A%20_____%20Preferred%20date%2Ftime%3A%20_____.">Text for Quote</a>
-              <a class="btn btn--glass" href="#book">Request Booking</a>
+              <a class="btn btn--primary" href="#book">Get a Fast Quote</a>
+              <a class="btn btn--glass" href="tel:+14233941698">Call Now</a>
             </div>
           </div>
         </div>
@@ -189,12 +221,15 @@
               <li>Door jambs cleaned</li>
               <li>Spray wax sealant</li>
             </ul>
-            <div class="addons">
+
+            <div class="addons addons--collapsed" data-addons>
               <span class="tag">Engine bay or truck bed +$40</span>
               <span class="tag">8-month paste wax +$80–$120</span>
               <span class="tag">Single-step compound/polish +$300</span>
               <span class="tag">Ceramic coating — starting at $800</span>
             </div>
+            <button class="addons-toggle" type="button" data-addons-toggle>Show more</button>
+
             <p class="fineprint">Final price varies by vehicle size & paint condition.</p>
             <div class="card__cta">
               <a class="btn btn--accent" href="#book" data-preset="exterior">Book Exterior</a>
@@ -212,11 +247,15 @@
               <li>Leather cleaned & conditioned</li>
               <li>Streak-free glass</li>
             </ul>
-            <div class="addons">
+
+            <div class="addons addons--collapsed" data-addons>
               <span class="tag">Dog hair +$15</span>
               <span class="tag">Heavy mess +$20</span>
               <span class="tag">Ozone odor treatment +$80</span>
+              <span class="tag">Interior shampoo (quote)</span>
             </div>
+            <button class="addons-toggle" type="button" data-addons-toggle>Show more</button>
+
             <div class="card__cta">
               <a class="btn btn--accent" href="#book" data-preset="interior">Book Interior</a>
               <a class="btn btn--ghost" href="sms:+14233941698?&body=Hi%20Gsudz%20Detailing%2C%20I%27d%20like%20the%20Extensive%20Interior%20Detail.%20Vehicle%3A%20_____%20Location%3A%20_____%20Preferred%20day%2Ftime%3A%20_____.">Text</a>
@@ -241,23 +280,32 @@
       </div>
     </section>
 
-    <!-- CERAMIC SUMMARY BLOCK (new) -->
+    <!-- Ceramic -->
     <section id="ceramic" class="section section--alt">
       <div class="container">
         <div class="section-head">
           <h2 class="h2">Premium Ceramic Protection</h2>
-          <p class="muted">Industry-leading protection with a deep, long-lasting finish — ideal for daily drivers and enthusiasts.</p>
+          <p class="muted">Long-term protection with a deep finish — ideal for daily drivers and enthusiasts.</p>
         </div>
 
         <div class="cards cards--2">
           <article class="card">
             <h3 class="h3">GYEON INFINITE Ceramic Coating</h3>
+
             <p class="muted">
-              Our GYEON INFINITE Ceramic Coating service delivers industry-leading protection with an exceptional, long-lasting finish.
-              This process begins with a thorough exterior wash to remove surface dirt and grime, followed by full decontamination to eliminate
-              embedded contaminants that compromise paint clarity and longevity. We then perform precise water-spot removal.
+              GYEON INFINITE is a premium ceramic coating designed for deep gloss and long-term protection.
+              Every coating starts with a proper wash and decontamination to remove bonded grime, followed by
+              water-spot removal and paint prep so the coating bonds correctly.
             </p>
-            <p class="fineprint">Starting at <strong>$800</strong>. Final pricing depends on vehicle size + paint condition.</p>
+
+            <ul class="list">
+              <li>Hydrophobic protection + easier washes</li>
+              <li>Helps resist UV fading, oxidation, and contamination</li>
+              <li>Prep matters — we do it the right way</li>
+            </ul>
+
+            <p class="fineprint">Starting at <strong>$800</strong>. Final pricing depends on size + paint condition.</p>
+
             <div class="card__cta">
               <a class="btn btn--primary" href="#book">Request Ceramic Quote</a>
               <a class="btn btn--ghost" href="sms:+14233941698?&body=Hi%20Gsudz%20Detailing%2C%20I%27d%20like%20a%20ceramic%20coating%20quote.%20Vehicle%3A%20_____%20Condition%3A%20_____%20Location%3A%20_____%20Preferred%20day%2Ftime%3A%20_____.">Text</a>
@@ -289,14 +337,14 @@
         <div class="split">
           <div class="panel">
             <ul class="list list--icons">
-              <li><span class="ico" aria-hidden="true">🛡️</span> Ceramic coating — <strong>starting at $800</strong></li>
-              <li><span class="ico" aria-hidden="true">🌀</span> One-stage paint enhancement</li>
-              <li><span class="ico" aria-hidden="true">🧽</span> Multi-step paint correction (quote)</li>
-              <li><span class="ico" aria-hidden="true">🧪</span> Decontamination wash & prep</li>
-              <li><span class="ico" aria-hidden="true">✨</span> Paste wax / longer protection</li>
-              <li><span class="ico" aria-hidden="true">🌬️</span> Ozone odor removal</li>
-              <li><span class="ico" aria-hidden="true">🚚</span> Fleet / multi-vehicle packages</li>
-              <li><span class="ico" aria-hidden="true">🔁</span> Maintenance plans (weekly / bi-weekly / monthly)</li>
+              <li><span class="ico-dot" aria-hidden="true"></span> Ceramic coating — <strong>starting at $800</strong></li>
+              <li><span class="ico-dot" aria-hidden="true"></span> One-stage paint enhancement</li>
+              <li><span class="ico-dot" aria-hidden="true"></span> Multi-step paint correction (quote)</li>
+              <li><span class="ico-dot" aria-hidden="true"></span> Decontamination wash & prep</li>
+              <li><span class="ico-dot" aria-hidden="true"></span> Paste wax / longer protection</li>
+              <li><span class="ico-dot" aria-hidden="true"></span> Ozone odor removal</li>
+              <li><span class="ico-dot" aria-hidden="true"></span> Fleet / multi-vehicle packages</li>
+              <li><span class="ico-dot" aria-hidden="true"></span> Maintenance plans (weekly / bi-weekly / monthly)</li>
             </ul>
 
             <p class="fineprint">Final price varies by vehicle size & paint condition.</p>
@@ -387,6 +435,7 @@
         <div class="section-head">
           <h2 class="h2">What Customers Say</h2>
           <p class="muted">Real recommendations from local customers.</p>
+          <p class="muted">Want more? Tap “Read More on Facebook” for full posts + photos.</p>
         </div>
 
         <div class="cards">
@@ -418,14 +467,44 @@
         <div class="split">
           <div class="panel">
             <h2 class="h2">Service Area</h2>
-            <p class="muted">
-              Based in <strong>Dayton, TN</strong>. Serving Rhea County + nearby areas.
-            </p>
-            <ul class="list list--icons">
-              <li><span class="ico" aria-hidden="true">📍</span> Dayton • Spring City • Rhea County</li>
-              <li><span class="ico" aria-hidden="true">🚤</span> Marina jobs around Bluewater</li>
-              <li><span class="ico" aria-hidden="true">🚗</span> Mobile, pick-up, or drop-off</li>
-            </ul>
+            <p class="muted">Based in <strong>Dayton, TN</strong>. Serving Rhea County + nearby areas.</p>
+
+            <div class="service-list">
+              <div class="service-item">
+                <div class="service-ico">📍</div>
+                <div>
+                  <strong>Local coverage</strong>
+                  <span>Dayton • Spring City • Rhea County</span>
+                </div>
+              </div>
+
+              <div class="service-item">
+                <div class="service-ico">🚤</div>
+                <div>
+                  <strong>Marina jobs</strong>
+                  <span>Bluewater + surrounding areas</span>
+                </div>
+              </div>
+
+              <div class="service-item">
+                <div class="service-ico">🚗</div>
+                <div>
+                  <strong>Convenient options</strong>
+                  <span>Mobile, pick-up, or drop-off</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mapcard" aria-hidden="true">
+              <div class="mapcard__top">
+                <div>
+                  <div class="mapcard__title">Dayton, TN</div>
+                  <div class="mapcard__sub">Serving nearby areas</div>
+                </div>
+                <a class="btn btn--ghost btn--sm" href="#book">Get Quote</a>
+              </div>
+              <div class="mapcard__img"></div>
+            </div>
 
             <div class="pill-row">
               <span class="pill">Mobile service</span>
@@ -527,7 +606,7 @@
     </section>
   </main>
 
-  <!-- Footer (Centered + icon buttons) -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="container footer__inner footer__inner--center">
       <a class="footer__brand" href="#top" aria-label="Back to top">
