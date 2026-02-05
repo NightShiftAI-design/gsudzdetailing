@@ -439,24 +439,27 @@ a:hover { opacity: .98; }
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.10);
 }
 
-/* NEW: collapse add-ons by default (optional) */
+/* NEW: collapse add-ons by default (Packages cards) */
 .addons--collapsed{
-  max-height: 46px;           /* shows ~1 row */
+  max-height: 78px;           /* ~2 rows */
   overflow: hidden;
   position: relative;
 }
+
 .addons--collapsed::after{
   content:"";
   position:absolute;
   left:0; right:0; bottom:0;
-  height: 28px;
-  background: linear-gradient(180deg, rgba(10,14,20,0), rgba(10,14,20,0.65));
+  height: 38px;
+  background: linear-gradient(180deg, rgba(10,14,20,0), rgba(10,14,20,0.92));
   pointer-events:none;
 }
-.addons.is-open{
+
+/* open state */
+.addons--collapsed.is-open{
   max-height: none;
 }
-.addons.is-open::after{ display:none; }
+.addons--collapsed.is-open::after{ display:none; }
 
 .addons-toggle{
   margin: 2px 0 10px;
