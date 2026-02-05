@@ -41,27 +41,64 @@
 
   // ---------- Gallery ----------
  const galleryItems = [
-  // Cars
-  { id: "c1", cat: "cars", src: "assets/gallery/corolla2after.JPG", alt: "Corolla after detailing" },
-  { id: "c2", cat: "cars", src: "assets/gallery/corvette2after.JPG", alt: "Corvette after detailing" },
-  { id: "c3", cat: "cars", src: "assets/gallery/elantraexterior.JPG", alt: "Hyundai Elantra exterior detail" },
-  { id: "c4", cat: "cars", src: "assets/gallery/gwagensideshotafter.JPG", alt: "G-Wagon after detailing" },
-  { id: "c5", cat: "cars", src: "assets/gallery/sexycar3.JPG", alt: "Performance car after detailing" },
+  // --- Cars (exteriors / paint) ---
+  { id: "c1",  cat: "cars", src: "assets/gallery/sexycar3.JPG", alt: "Car after detailing" },
+  { id: "c2",  cat: "cars", src: "assets/gallery/corvette2after.JPG", alt: "Corvette after detailing" },
+  { id: "c3",  cat: "cars", src: "assets/gallery/corolla2after.JPG", alt: "Corolla after detailing" },
+  { id: "c4",  cat: "cars", src: "assets/gallery/elantraafter.JPG", alt: "Elantra after detailing" },
+  { id: "c5",  cat: "cars", src: "assets/gallery/elantrabefore.JPG", alt: "Elantra before detailing" },
+  { id: "c6",  cat: "cars", src: "assets/gallery/gwagensideshotafter.JPG", alt: "G-Wagon after detailing" },
+  { id: "c7",  cat: "cars", src: "assets/gallery/gwagensideshotbefore.JPG", alt: "G-Wagon before detailing" },
+  { id: "c8",  cat: "cars", src: "assets/gallery/oldschoolafter.JPG", alt: "Classic car after detailing" },
+  { id: "c9",  cat: "cars", src: "assets/gallery/oldschoolbefore.JPG", alt: "Classic car before detailing" },
+  { id: "c10", cat: "cars", src: "assets/gallery/oldschool2after.JPG", alt: "Classic car after detailing" },
+  { id: "c11", cat: "cars", src: "assets/gallery/oldschool2before.JPG", alt: "Classic car before detailing" },
+  { id: "c12", cat: "cars", src: "assets/gallery/chevafter.JPG", alt: "Chevy after detailing" },
+  { id: "c13", cat: "cars", src: "assets/gallery/chevbefore.JPG", alt: "Chevy before detailing" },
+  { id: "c14", cat: "cars", src: "assets/gallery/doorafter.JPG", alt: "Door jamb after detailing" },
+  { id: "c15", cat: "cars", src: "assets/gallery/doorbefore.JPG", alt: "Door jamb before detailing" },
+  { id: "c16", cat: "cars", src: "assets/gallery/petrolcapafter.JPG", alt: "Fuel door after detailing" },
+  { id: "c17", cat: "cars", src: "assets/gallery/petrolcapbefore.JPG", alt: "Fuel door before detailing" },
+  { id: "c18", cat: "cars", src: "assets/gallery/sexyycar2after.JPG", alt: "Car after detailing" },
+  { id: "c19", cat: "cars", src: "assets/gallery/sexyycar2before.JPG", alt: "Car before detailing" },
+  { id: "c20", cat: "cars", src: "assets/gallery/comparison.JPG", alt: "Before and after comparison" },
 
-  // Trucks/SUVs
+  // --- Trucks/SUVs ---
   { id: "t1", cat: "trucks", src: "assets/gallery/ramtruck3after.JPG", alt: "RAM truck after detailing" },
-  { id: "t2", cat: "trucks", src: "assets/gallery/redbeastfront.JPG", alt: "Red truck front detail" },
+  { id: "t2", cat: "trucks", src: "assets/gallery/redbeastfront.JPG", alt: "Truck front detail" },
+  { id: "t3", cat: "trucks", src: "assets/gallery/whitetruckexafter.JPG", alt: "White truck after detailing" },
+  { id: "t4", cat: "trucks", src: "assets/gallery/whitetruckexbefore.JPG", alt: "White truck before detailing" },
 
-  // Interiors
-  { id: "i1", cat: "interiors", src: "assets/gallery/frontinteriorafter.JPG", alt: "Front interior after detailing" },
+  // --- Interiors ---
+  { id: "i1", cat: "interiors", src: "assets/gallery/carinteriorafter.JPG", alt: "Car interior after detailing" },
+  { id: "i2", cat: "interiors", src: "assets/gallery/carinteriorbefore.JPG", alt: "Car interior before detailing" },
+  { id: "i3", cat: "interiors", src: "assets/gallery/frontinteriorafter.JPG", alt: "Front interior after detailing" },
+  { id: "i4", cat: "interiors", src: "assets/gallery/interiorbackseatafter.JPG", alt: "Back seat after detailing" },
+  { id: "i5", cat: "interiors", src: "assets/gallery/interiorbackseatbefore.JPG", alt: "Back seat before detailing" },
+  { id: "i6", cat: "interiors", src: "assets/gallery/fordinteriorbefore.JPG", alt: "Ford interior before detailing" },
 
-  // RV / Marine
+  // --- RV / Marine / Heavy equipment ---
   { id: "rv1", cat: "rvmarine", src: "assets/gallery/rv2after.JPG", alt: "RV after detailing" },
-  { id: "rv2", cat: "rvmarine", src: "assets/gallery/rv3after.JPG", alt: "RV exterior after detailing" },
+  { id: "rv2", cat: "rvmarine", src: "assets/gallery/rv3after.JPG", alt: "RV after detailing" },
+  { id: "rv3", cat: "rvmarine", src: "assets/gallery/rv4after.JPG", alt: "RV after detailing" },
+  { id: "rv4", cat: "rvmarine", src: "assets/gallery/rv4before.JPG", alt: "RV before detailing" },
+  { id: "rv5", cat: "rvmarine", src: "assets/gallery/forkliftafter.JPG", alt: "Forklift after wash" },
+  { id: "rv6", cat: "rvmarine", src: "assets/gallery/forkliftbefore.JPG", alt: "Forklift before wash" },
 
-  // Bikes
-  { id: "b1", cat: "bikes", src: "assets/gallery/bike1after.JPG", alt: "Motorcycle after detailing" },
-  { id: "b2", cat: "bikes", src: "assets/gallery/bike2after.JPG", alt: "Motorcycle detail finish" },
+  // Boats
+  { id: "b01", cat: "rvmarine", src: "assets/gallery/boat1after.JPG", alt: "Boat after detailing" },
+  { id: "b02", cat: "rvmarine", src: "assets/gallery/boat1before.JPG", alt: "Boat before detailing" },
+  { id: "b03", cat: "rvmarine", src: "assets/gallery/boat2after.JPG", alt: "Boat after detailing" },
+  { id: "b04", cat: "rvmarine", src: "assets/gallery/boat2before.JPG", alt: "Boat before detailing" },
+  { id: "b05", cat: "rvmarine", src: "assets/gallery/boat6after.JPG", alt: "Boat after detailing" },
+  { id: "b06", cat: "rvmarine", src: "assets/gallery/boat8after.JPG", alt: "Boat after detailing" },
+
+  // --- Bikes ---
+  { id: "bk1", cat: "bikes", src: "assets/gallery/bike1after.JPG", alt: "Bike after detailing" },
+  { id: "bk2", cat: "bikes", src: "assets/gallery/bike2after.JPG", alt: "Bike after detailing" },
+  { id: "bk3", cat: "bikes", src: "assets/gallery/bike3after.JPG", alt: "Bike after detailing" },
+  { id: "bk4", cat: "bikes", src: "assets/gallery/bike5after.JPG", alt: "Bike after detailing" },
+  { id: "bk5", cat: "bikes", src: "assets/gallery/bikemidwash.JPG", alt: "Bike mid wash" },
 ];
 
   const galleryGrid = $("#galleryGrid");
