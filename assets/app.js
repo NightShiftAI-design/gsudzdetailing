@@ -38,52 +38,62 @@
     });
   }
 
-  // ---------- NEW: Add-ons toggle ----------
-  function initAddonsToggles() {
-    const cards = $$(".card");
+ // ---------- NEW: Add-ons toggle ----------
+function initAddonsToggles() {
+  const cards = $$(".card");
 
-    function isOverflowing(el) {
-      // Give layout a moment to compute in case fonts/images affect line breaks
-      return el.scrollHeight > el.clientHeight + 2;
-    }
-
-    cards.forEach((card) => {
-      const addons = $(".addons", card);
-      const toggle = $(".addons-toggle", card);
-
-      // Only apply if both exist AND the addons are intended to collapse
-      if (!addons || !toggle) return;
-      if (!addons.classList.contains("addons--collapsed")) return;
-
-      // Set initial state closed
-      addons.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.textContent = "Show more";
-
-      // If it doesn't overflow, hide the toggle completely
-      // (do it after a microtask + after load to be safe with fonts)
-      const checkAndHide = () => {
-        // Ensure collapsed styles are active for accurate measurement
-        addons.classList.add("addons--collapsed");
-        if (!isOverflowing(addons)) {
-          toggle.style.display = "none";
-          addons.classList.remove("addons--collapsed"); // no need to clamp if it doesn't overflow
-          addons.classList.remove("is-open");
-        } else {
-          toggle.style.display = "inline-flex";
-        }
-      };
-
-      Promise.resolve().then(checkAndHide);
-      window.addEventListener("load", checkAndHide, { once: true });
-
-      toggle.addEventListener("click", () => {
-        const open = addons.classList.toggle("is-open");
-        toggle.setAttribute("aria-expanded", open ? "true" : "false");
-        toggle.textContent = open ? "Show less" : "Show more";
-      });
-    });
+  function isOverflowing(el) {
+    return el.scrollHeight > el.clientHeight + 2;
   }
+
+  cards.forEach((card) => {
+    const addons = $(".addons", card);
+    const toggle = $(".addons-toggle", card);
+
+    // Only apply if both exist AND intended to collapse
+    if (!addons || !toggle) return;
+    if (!addons.classList.contains("addons--collapsed")) return;
+
+    const setOpen = (open) => {
+      addons.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "Show less" : "Show more";
+    };
+
+    // Start closed
+    setOpen(false);
+
+    const checkAndHide = () => {
+      // Ensure we're measuring in the CLOSED/clamped state
+      setOpen(false);
+
+      if (!isOverflowing(addons)) {
+        // Not enough content to justify a toggle
+        toggle.style.display = "none";
+        // If you want: keep it open so it doesn't look artificially constrained
+        addons.classList.add("is-open"); // harmless if no overflow
+      } else {
+        toggle.style.display = "inline-flex";
+      }
+    };
+
+    // Run after layout settles (fonts, responsive wrapping, etc.)
+    requestAnimationFrame(checkAndHide);
+    window.addEventListener("load", checkAndHide, { once: true });
+
+    // Re-check on resize (wrapping changes can create/remove overflow)
+    let rAf = 0;
+    window.addEventListener("resize", () => {
+      cancelAnimationFrame(rAf);
+      rAf = requestAnimationFrame(checkAndHide);
+    });
+
+    toggle.addEventListener("click", () => {
+      const open = addons.classList.contains("is-open");
+      setOpen(!open);
+    });
+  });
+}
 
   // ---------- Gallery ----------
   const galleryItems = [
