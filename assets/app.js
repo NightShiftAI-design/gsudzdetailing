@@ -7,6 +7,7 @@
    - Formspree submit UX + honeypot
    - Hero bubbles + cursor ripples (rate-limited)
    - Smooth-scroll offset for sticky header
+   - NEW: Add-ons "Show more/less" toggle per card
    ========================= */
 
 (() => {
@@ -33,6 +34,53 @@
 
         window.scrollTo({ top, behavior: "smooth" });
         history.pushState(null, "", href);
+      });
+    });
+  }
+
+  // ---------- NEW: Add-ons toggle ----------
+  function initAddonsToggles() {
+    const cards = $$(".card");
+
+    function isOverflowing(el) {
+      // Give layout a moment to compute in case fonts/images affect line breaks
+      return el.scrollHeight > el.clientHeight + 2;
+    }
+
+    cards.forEach((card) => {
+      const addons = $(".addons", card);
+      const toggle = $(".addons-toggle", card);
+
+      // Only apply if both exist AND the addons are intended to collapse
+      if (!addons || !toggle) return;
+      if (!addons.classList.contains("addons--collapsed")) return;
+
+      // Set initial state closed
+      addons.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Show more";
+
+      // If it doesn't overflow, hide the toggle completely
+      // (do it after a microtask + after load to be safe with fonts)
+      const checkAndHide = () => {
+        // Ensure collapsed styles are active for accurate measurement
+        addons.classList.add("addons--collapsed");
+        if (!isOverflowing(addons)) {
+          toggle.style.display = "none";
+          addons.classList.remove("addons--collapsed"); // no need to clamp if it doesn't overflow
+          addons.classList.remove("is-open");
+        } else {
+          toggle.style.display = "inline-flex";
+        }
+      };
+
+      Promise.resolve().then(checkAndHide);
+      window.addEventListener("load", checkAndHide, { once: true });
+
+      toggle.addEventListener("click", () => {
+        const open = addons.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.textContent = open ? "Show less" : "Show more";
       });
     });
   }
@@ -236,7 +284,6 @@
     // Optional: set helpful defaults when switching
     const service = leadForm?.querySelector('select[name="service"]');
     if (service && mode === "quote") {
-      // If they go to quote tab and service is empty, steer toward quote option
       if (!service.value) service.value = "RV / Marine / Motorcycle Quote";
     }
   }
@@ -422,6 +469,7 @@
 
   // init
   initAnchorOffsetScroll();
+  initAddonsToggles();     // ✅ NEW
   initBubbles();
   initCursorRipples();
 })();
