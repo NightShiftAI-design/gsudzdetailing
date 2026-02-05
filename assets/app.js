@@ -1,10 +1,11 @@
 /* =========================
-   GSUDZ DETAILING — V4 APP
+   GSUDZ DETAILING — V4 APP (FULL)
    - Gallery render + filters + lightbox
    - Simplified lead form (no addonsBox/quoteBox)
    - Form tabs still supported (just sets hidden formType)
    - Form presets still supported (fills Service dropdown)
    - Formspree submit UX + honeypot
+   - NEW: If Formspree not connected yet -> SMS fallback (prefilled)
    - Hero bubbles + cursor ripples (rate-limited)
    - Smooth-scroll offset for sticky header
    - NEW: Add-ons "Show more/less" toggle per card
@@ -38,62 +39,62 @@
     });
   }
 
- // ---------- NEW: Add-ons toggle ----------
-function initAddonsToggles() {
-  const cards = $$(".card");
+  // ---------- Add-ons toggle ----------
+  function initAddonsToggles() {
+    const cards = $$(".card");
 
-  function isOverflowing(el) {
-    return el.scrollHeight > el.clientHeight + 2;
-  }
+    function isOverflowing(el) {
+      return el.scrollHeight > el.clientHeight + 2;
+    }
 
-  cards.forEach((card) => {
-    const addons = $(".addons", card);
-    const toggle = $(".addons-toggle", card);
+    cards.forEach((card) => {
+      const addons = $(".addons", card);
+      const toggle = $(".addons-toggle", card);
 
-    // Only apply if both exist AND intended to collapse
-    if (!addons || !toggle) return;
-    if (!addons.classList.contains("addons--collapsed")) return;
+      // Only apply if both exist AND intended to collapse
+      if (!addons || !toggle) return;
+      if (!addons.classList.contains("addons--collapsed")) return;
 
-    const setOpen = (open) => {
-      addons.classList.toggle("is-open", open);
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.textContent = open ? "Show less" : "Show more";
-    };
+      const setOpen = (open) => {
+        addons.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.textContent = open ? "Show less" : "Show more";
+      };
 
-    // Start closed
-    setOpen(false);
-
-    const checkAndHide = () => {
-      // Ensure we're measuring in the CLOSED/clamped state
+      // Start closed
       setOpen(false);
 
-      if (!isOverflowing(addons)) {
-        // Not enough content to justify a toggle
-        toggle.style.display = "none";
-        // If you want: keep it open so it doesn't look artificially constrained
-        addons.classList.add("is-open"); // harmless if no overflow
-      } else {
-        toggle.style.display = "inline-flex";
-      }
-    };
+      const checkAndHide = () => {
+        // Ensure we're measuring in the CLOSED/clamped state
+        setOpen(false);
 
-    // Run after layout settles (fonts, responsive wrapping, etc.)
-    requestAnimationFrame(checkAndHide);
-    window.addEventListener("load", checkAndHide, { once: true });
+        if (!isOverflowing(addons)) {
+          // Not enough content to justify a toggle
+          toggle.style.display = "none";
+          // Keep it open so it doesn't look artificially constrained
+          addons.classList.add("is-open");
+        } else {
+          toggle.style.display = "inline-flex";
+        }
+      };
 
-    // Re-check on resize (wrapping changes can create/remove overflow)
-    let rAf = 0;
-    window.addEventListener("resize", () => {
-      cancelAnimationFrame(rAf);
-      rAf = requestAnimationFrame(checkAndHide);
+      // Run after layout settles (fonts, responsive wrapping, etc.)
+      requestAnimationFrame(checkAndHide);
+      window.addEventListener("load", checkAndHide, { once: true });
+
+      // Re-check on resize (wrapping changes can create/remove overflow)
+      let rAf = 0;
+      window.addEventListener("resize", () => {
+        cancelAnimationFrame(rAf);
+        rAf = requestAnimationFrame(checkAndHide);
+      });
+
+      toggle.addEventListener("click", () => {
+        const open = addons.classList.contains("is-open");
+        setOpen(!open);
+      });
     });
-
-    toggle.addEventListener("click", () => {
-      const open = addons.classList.contains("is-open");
-      setOpen(!open);
-    });
-  });
-}
+  }
 
   // ---------- Gallery ----------
   const galleryItems = [
@@ -329,7 +330,7 @@ function initAddonsToggles() {
 
   setTab("book");
 
-  // ---------- Formspree submit UX ----------
+  // ---------- Form submit UX (Formspree OR SMS fallback) ----------
   const statusEl = $("#formStatus");
   const honeypot = $("#website");
 
@@ -339,18 +340,44 @@ function initAddonsToggles() {
 
     // Bot trap
     if (honeypot && honeypot.value.trim().length > 0) {
-      if (statusEl) statusEl.textContent = "✅ Thanks — we’ll text you shortly.";
+      if (statusEl) statusEl.textContent = "✅ Thanks — request received.";
       leadForm.reset();
       setTab("book");
       return;
     }
 
     const action = leadForm.getAttribute("action") || "";
+
+    // Collect values once (used for both Formspree + SMS fallback)
+    const name = leadForm.querySelector('[name="name"]')?.value?.trim() || "";
+    const phone = leadForm.querySelector('[name="phone"]')?.value?.trim() || "";
+    const vehicleType = leadForm.querySelector('[name="vehicleType"]')?.value?.trim() || "";
+    const service = leadForm.querySelector('[name="service"]')?.value?.trim() || "";
+    const notes = leadForm.querySelector('[name="notes"]')?.value?.trim() || "";
+    const formType = formTypeInput?.value || "book";
+
+    // ✅ FALLBACK MODE: if Formspree isn't connected yet, open SMS composer (prefilled)
     if (!action || action.includes("FORMSPREE_ENDPOINT")) {
-      if (statusEl) statusEl.textContent = "Form isn’t connected yet. Replace FORMSPREE_ENDPOINT with your Formspree link.";
+      const msg =
+        `New website request (${formType.toUpperCase()}):\n` +
+        `Name: ${name}\n` +
+        `Phone: ${phone}\n` +
+        `Vehicle: ${vehicleType}\n` +
+        `Service: ${service}\n` +
+        (notes ? `Notes: ${notes}\n` : "");
+
+      if (statusEl) statusEl.textContent = "Opening your text app to send the request…";
+
+      const body = encodeURIComponent(msg);
+      window.location.href = `sms:+14233941698?&body=${body}`;
+
+      // Optional: don’t reset immediately (user may come back)
+      // leadForm.reset();
+      // setTab("book");
       return;
     }
 
+    // ✅ NORMAL MODE: Formspree works when action is a real endpoint
     const formData = new FormData(leadForm);
 
     try {
@@ -363,7 +390,7 @@ function initAddonsToggles() {
       });
 
       if (res.ok) {
-        if (statusEl) statusEl.textContent = "✅ Thanks — we’ll text you shortly.";
+        if (statusEl) statusEl.textContent = "✅ Thanks — we’ll reach out shortly.";
         leadForm.reset();
         setTab("book");
       } else {
@@ -479,7 +506,7 @@ function initAddonsToggles() {
 
   // init
   initAnchorOffsetScroll();
-  initAddonsToggles();     // ✅ NEW
+  initAddonsToggles();
   initBubbles();
   initCursorRipples();
 })();
