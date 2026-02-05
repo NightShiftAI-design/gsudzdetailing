@@ -3,8 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Premium Auto, Marine & RV Detailing in Dayton, TN. Call or text for a quote. Packages, ceramic coatings, paint correction, maintenance plans." />
+
+  <!-- Cleaner, more professional description -->
+  <meta name="description" content="Premium auto detailing in Dayton, TN. Professional interior and exterior detailing, paint correction, and ceramic coating for daily drivers, trucks, and performance vehicles. Mobile and shop appointments available." />
+
   <title>Gsudz Detailing — Dayton, TN</title>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,12 +34,16 @@
         </span>
       </a>
 
+      <!-- NEW: Hours line (clean + pro) -->
+      <div class="topbar__meta">
+        <span class="topbar__hours">Hours: <strong>7:00 AM – 5:00 PM</strong> (Mon–Fri)</span>
+      </div>
+
+      <!-- Simplified actions -->
       <nav class="topbar__actions" aria-label="Primary actions">
         <a class="btn btn--ghost btn--sm" href="#packages">Pricing</a>
         <a class="btn btn--ghost btn--sm" href="#gallery">Gallery</a>
-        <a class="btn btn--primary btn--sm" href="tel:+14233941698">Call</a>
-        <a class="btn btn--glass btn--sm" href="sms:+14233941698?&body=Hi%20Gsudz%20Detailing%2C%20I%27d%20like%20a%20quote.%20My%20vehicle%20is%3A%20_____%20Service%20wanted%3A%20_____%20My%20location%3A%20_____%20Preferred%20date%2Ftime%3A%20_____.">Text</a>
-        <a class="btn btn--accent btn--sm" href="#book">Book / Quote</a>
+        <a class="btn btn--primary btn--sm" href="#book">Contact / Get Quote</a>
       </nav>
     </div>
   </header>
@@ -42,18 +54,29 @@
       <div class="hero__bubbles" aria-hidden="true"></div>
       <div class="hero__track" aria-hidden="true"></div>
 
+      <!-- NEW: Hero photo strip (3-image) -->
+      <div class="hero__media" aria-hidden="true">
+        <div class="hero__photos">
+          <div class="hero__photo hero__photo--1"></div>
+          <div class="hero__photo hero__photo--2"></div>
+          <div class="hero__photo hero__photo--3"></div>
+        </div>
+        <div class="hero__overlay"></div>
+      </div>
+
       <div class="container hero__inner">
         <div class="hero__copy">
           <p class="kicker">AUTO • MARINE • RV • MOTORCYCLE</p>
 
+          <!-- Updated headline (less salesy) -->
           <h1 class="h1">
-            Enthusiast-Grade Detailing<br>
-            <span class="h1__glow">Built For A Showroom Finish</span>
+            Professional Detailing<br>
+            <span class="h1__glow">Interior • Exterior • Paint • Ceramic</span>
           </h1>
 
+          <!-- Updated lead (clean + trustworthy) -->
           <p class="lead">
-            Serving <strong>Dayton, TN</strong> and the Rhea County area — including Spring City and Bluewater Resort & Marina.
-            Clean. Protected. Corrected.
+            Premium auto detailing in <strong>Dayton, TN</strong>. Professional interior and exterior detailing, paint correction, and ceramic coating for daily drivers, trucks, and performance vehicles. Mobile and shop appointments available.
           </p>
 
           <!-- Track HUD -->
@@ -69,7 +92,7 @@
               <span class="hud__sep">/</span>
               Response: <strong>Fast text quotes</strong>
               <span class="hud__sep">/</span>
-              Finish: <strong>High-gloss protection</strong>
+              Finish: <strong>Clean, protected, and sharp</strong>
             </div>
           </div>
 
@@ -170,7 +193,7 @@
               <span class="tag">Engine bay or truck bed +$40</span>
               <span class="tag">8-month paste wax +$80–$120</span>
               <span class="tag">Single-step compound/polish +$300</span>
-              <span class="tag">Ceramic coating from $400</span>
+              <span class="tag">Ceramic coating — starting at $800</span>
             </div>
             <div class="card__cta">
               <a class="btn btn--accent" href="#book" data-preset="exterior">Book Exterior</a>
@@ -228,7 +251,11 @@
         <div class="split">
           <div class="panel">
             <ul class="list list--icons">
-              <li><span class="ico" aria-hidden="true">🛡️</span> Ceramic coating (starting at $400)</li>
+              <li>
+                <span class="ico" aria-hidden="true">🛡️</span>
+                Ceramic Coating — <strong>Starting at $800</strong>
+                <span class="muted"> (final price varies by vehicle size &amp; paint condition)</span>
+              </li>
               <li><span class="ico" aria-hidden="true">🌀</span> One-stage paint enhancement</li>
               <li><span class="ico" aria-hidden="true">🧽</span> Multi-step paint correction (quote)</li>
               <li><span class="ico" aria-hidden="true">🧪</span> Decontamination wash & prep</li>
@@ -461,7 +488,8 @@
                 <label><input type="checkbox" name="addons" value="Engine bay or truck bed (+$40)"> Engine bay or truck bed (+$40)</label>
                 <label><input type="checkbox" name="addons" value="8-month paste wax (+$80–$120)"> 8-month paste wax (+$80–$120)</label>
                 <label><input type="checkbox" name="addons" value="Single-step compound/polish (+$300)"> Single-step compound/polish (+$300)</label>
-                <label><input type="checkbox" name="addons" value="Ceramic coating (from $400)"> Ceramic coating (from $400)</label>
+                <label><input type="checkbox" name="addons" value="Ceramic coating (starting at $800)"> Ceramic coating (starting at $800)</label>
+                <p class="fineprint" style="margin:6px 0 0 0;">Final price varies by vehicle size &amp; paint condition.</p>
                 <label><input type="checkbox" name="addons" value="Dog hair removal (+$15)"> Dog hair removal (+$15)</label>
                 <label><input type="checkbox" name="addons" value="Heavy mess (+$20)"> Heavy mess (+$20)</label>
                 <label><input type="checkbox" name="addons" value="Ozone odor treatment (+$80)"> Ozone odor treatment (+$80)</label>
