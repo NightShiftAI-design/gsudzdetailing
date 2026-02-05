@@ -1,12 +1,17 @@
 /* =========================
-   GSUDZ DETAILING — V3 STYLES
-   Polished / professional (less bright)
-   + hero photo strip + hours line
+   GSUDZ DETAILING — V4 STYLES
+   - Polished / professional (less bright)
+   - Hero photo strip + hours line
+   - FIX: addon "road line" tags -> clean pills
+   - NEW: image break grid (visual flow)
+   - NEW: service area list w/ icon/map card
+   - NEW: mobile CTA stacking + sticky mobile bar styles
+   - UPDATED: simplified form (no addonsBox/quoteBox/checks)
    ========================= */
 
 :root {
   /* Base */
-  --bg-0: #0A0E14;            /* charcoal navy */
+  --bg-0: #0A0E14;
   --bg-1: #0B0F16;
   --panel: rgba(255,255,255,0.055);
   --panel-strong: rgba(255,255,255,0.09);
@@ -15,10 +20,10 @@
   --text-0: #E9EEF7;
   --text-1: #A9B2C3;
 
-  /* Muted brand accents (tone down neon) */
-  --brand-0: #2B5BBB;         /* muted blue */
-  --brand-1: #17306C;         /* deeper blue */
-  --accent: #6FE7D0;          /* softer mint */
+  /* Muted brand accents */
+  --brand-0: #2B5BBB;
+  --brand-1: #17306C;
+  --accent: #6FE7D0;
   --chrome: #D7DEE8;
 
   --radius: 16px;
@@ -131,18 +136,20 @@ a:hover { opacity: .98; }
 }
 
 .brand { display: inline-flex; align-items: center; gap: 10px; }
-.brand__mark{
-  width: 38px; height: 38px;
-  display: grid; place-items: center;
-  border-radius: 10px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--brand-0), var(--brand-1));
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18), var(--shadow-soft);
-}
 .brand__name { font-weight: 700; }
 .brand__sub { font-size: 12px; color: var(--text-1); display: block; }
 
-/* NEW: hours line */
+/* logo image (replaces GS text) */
+.brand__logo{
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14), var(--shadow-soft);
+  background: rgba(255,255,255,0.04);
+}
+
+/* hours line */
 .topbar__meta{
   display: flex;
   align-items: center;
@@ -187,14 +194,12 @@ a:hover { opacity: .98; }
 .btn--ghost { --btn-bg: rgba(255,255,255,0.035); }
 .btn--glass { --btn-bg: var(--glass); backdrop-filter: blur(8px); }
 
-/* keep “primary” professional */
 .btn--primary {
   --btn-bg: linear-gradient(135deg, var(--brand-0), var(--brand-1));
   --btn-bd: transparent;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), var(--shadow-soft);
 }
 
-/* soften accent (still a pop, not neon) */
 .btn--accent {
   --btn-bg: linear-gradient(135deg, var(--accent), rgba(111,231,208,0.82));
   --btn-bd: transparent;
@@ -204,12 +209,25 @@ a:hover { opacity: .98; }
 
 .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,0.42); }
 
+/* A “link-like” button option (used for secondary CTA) */
+.btn--link {
+  --btn-bg: transparent;
+  --btn-bd: transparent;
+  padding: 10px 6px;
+  border-radius: 10px;
+  color: rgba(233,238,247,0.90);
+  text-decoration: underline;
+  text-decoration-color: rgba(111,231,208,0.25);
+  text-underline-offset: 3px;
+}
+.btn--link:hover { transform: none; box-shadow: none; opacity: 1; }
+
 /* =========================
    Hero
    ========================= */
 .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
 
-/* NEW: hero media strip */
+/* hero media strip */
 .hero__media{
   position: absolute;
   inset: 0 0 auto 0;
@@ -236,7 +254,7 @@ a:hover { opacity: .98; }
   opacity: 0.95;
 }
 
-/* ✅ Replace these URLs with your images later (or keep placeholders) */
+/* styles.css lives in /assets, so this maps to /assets/gallery/... ✅ */
 .hero__photo--1 { background-image: url("gallery/corvette2after.JPG"); }
 .hero__photo--2 { background-image: url("gallery/gwagensideshotafter.JPG"); }
 .hero__photo--3 { background-image: url("gallery/sexycar3.JPG"); }
@@ -258,7 +276,7 @@ a:hover { opacity: .98; }
   grid-template-columns: 1.1fr .9fr;
   gap: 28px;
   align-items: center;
-  padding-top: clamp(140px, 16vh, 220px); /* push content below photo strip */
+  padding-top: clamp(140px, 16vh, 220px);
 }
 
 .hero__bubbles {
@@ -292,7 +310,14 @@ a:hover { opacity: .98; }
   mask-image: radial-gradient(circle at 35% 35%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 72%);
 }
 
-.hero__cta { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 10px; }
+/* CTA row */
+.hero__cta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 18px 0 10px;
+}
+
 .hero__trust, .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
 .pill {
   padding: 6px 10px;
@@ -387,16 +412,51 @@ a:hover { opacity: .98; }
 .list--icons li{ display:flex; gap:10px; align-items:center; }
 .ico{ opacity:.9; }
 
+/* FIX: tags no longer look like "road lines" */
 .addons{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
 .tag{
   font-size: 12px;
-  padding: 6px 10px;
+  padding: 7px 10px;
   border-radius: 999px;
-  border: 1px dashed rgba(215,222,232,0.18);
-  color: var(--text-1);
+  border: 1px solid rgba(215,222,232,0.16);
+  background: rgba(255,255,255,0.04);
+  color: rgba(233,238,247,0.86);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.10);
 }
 
 .card__cta{ display:flex; gap:8px; flex-wrap:wrap; }
+
+/* =========================
+   Image breaks (visual flow)
+   ========================= */
+.imgbreaks{
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.imgbox{
+  border-radius: 14px;
+  border: 1px solid rgba(215,222,232,0.14);
+  background: #0b1220;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.38);
+}
+.imgbox img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.96) contrast(1.05);
+}
+.imgbox::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.35));
+  opacity: .9;
+  pointer-events: none;
+}
 
 /* =========================
    Split panels
@@ -415,6 +475,64 @@ a:hover { opacity: .98; }
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
   margin: 16px 0;
   opacity: .35;
+}
+
+/* NEW: service list + map card */
+.service-list{
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 0;
+}
+.service-item{
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(215,222,232,0.14);
+  background: rgba(255,255,255,0.03);
+}
+.service-ico{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(215,222,232,0.14);
+  color: rgba(233,238,247,0.92);
+  font-weight: 800;
+}
+.service-item strong{ display:block; margin-bottom: 2px; }
+.service-item span{ color: var(--text-1); font-size: 13px; line-height: 1.5; }
+
+.mapcard{
+  margin-top: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(215,222,232,0.14);
+  overflow: hidden;
+  background: #0b1220;
+  box-shadow: 0 18px 52px rgba(0,0,0,0.42);
+}
+.mapcard__top{
+  padding: 14px 14px 10px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid rgba(215,222,232,0.10);
+  background: rgba(255,255,255,0.03);
+}
+.mapcard__title{ font-weight: 800; letter-spacing: .02em; }
+.mapcard__sub{ color: var(--text-1); font-size: 12px; }
+.mapcard__img{
+  width: 100%;
+  height: 210px;
+  background:
+    radial-gradient(650px 240px at 70% 30%, rgba(43,91,187,0.20), transparent 60%),
+    radial-gradient(650px 240px at 20% 20%, rgba(111,231,208,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.10));
 }
 
 /* =========================
@@ -465,7 +583,7 @@ a:hover { opacity: .98; }
 .who{ margin-top: 10px; font-weight: 600; }
 
 /* =========================
-   Form
+   Form (simplified)
    ========================= */
 .form-shell{
   background: rgba(255,255,255,0.045);
@@ -473,6 +591,7 @@ a:hover { opacity: .98; }
   border-radius: var(--radius);
   padding: 20px;
 }
+
 .tabs{ display:flex; gap:6px; margin-bottom:14px; }
 .tab{
   flex:1;
@@ -508,15 +627,6 @@ a:hover { opacity: .98; }
 }
 .field input::placeholder,
 .field textarea::placeholder{ color: rgba(169,178,195,0.6); }
-
-.addons-box, .quote-box{
-  margin: 14px 0;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px dashed rgba(215,222,232,0.18);
-}
-
-.checks{ display:grid; grid-template-columns: repeat(2, 1fr); gap:8px; font-size: 13px; }
 
 .form-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
 .status{ margin-top: 10px; min-height: 20px; }
@@ -636,49 +746,8 @@ a:hover { opacity: .98; }
 }
 
 /* =========================
-   Responsive
+   Footer centered + icon buttons
    ========================= */
-@media (max-width: 1000px) {
-  .hero__inner, .split { grid-template-columns: 1fr; }
-  .cards { grid-template-columns: 1fr 1fr; }
-  .cards--4 { grid-template-columns: 1fr 1fr; }
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-
-  /* hero photo strip becomes 1-row scroll-ish on medium */
-  .hero__photos{ grid-template-columns: 1fr 1fr 1fr; }
-}
-
-@media (max-width: 760px) {
-  /* hours line drops under brand on smaller widths */
-  .topbar__inner { flex-wrap: wrap; justify-content: center; }
-  .topbar__meta { order: 3; border-left: 0; border-right: 0; padding: 6px 0 10px; }
-}
-
-@media (max-width: 640px) {
-  .topbar__actions .btn--ghost { display: none; }
-
-  .cards { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .leadform .grid { grid-template-columns: 1fr; }
-  .checks { grid-template-columns: 1fr; }
-  .quick-grid { grid-template-columns: 1fr; }
-
-  /* hero photos stack nicer on mobile */
-  .hero__media{ height: 220px; }
-  .hero__photos{ grid-template-columns: 1fr; }
-  .hero__inner{ padding-top: 160px; }
-}
-/* --- Brand logo image (replaces GS text) --- */
-.brand__logo{
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14), var(--shadow-soft);
-  background: rgba(255,255,255,0.04);
-}
-
-/* --- Footer centered + icon buttons --- */
 .footer{
   border-top: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
@@ -732,9 +801,7 @@ a:hover { opacity: .98; }
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
 
-.iconbtn svg{
-  opacity: .95;
-}
+.iconbtn svg{ opacity: .95; }
 
 .iconbtn:hover{
   transform: translateY(-1px);
@@ -747,4 +814,85 @@ a:hover { opacity: .98; }
   margin: 6px 0 0;
   font-size: 13px;
   line-height: 1.5;
+}
+
+/* =========================
+   Sticky mobile bar
+   ========================= */
+.mobilebar{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 60;
+  display: none;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(215,222,232,0.16);
+  background: rgba(10,14,20,0.72);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.55);
+}
+.mobilebar__btn{
+  flex: 1;
+  text-align: center;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(215,222,232,0.14);
+  background: rgba(255,255,255,0.05);
+  color: rgba(233,238,247,0.92);
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+.mobilebar__btn--accent{
+  border: 0;
+  background: linear-gradient(135deg, var(--accent), rgba(111,231,208,0.82));
+  color: #06201A;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 1000px) {
+  .hero__inner, .split { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr 1fr; }
+  .cards--4 { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .imgbreaks { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .topbar__inner { flex-wrap: wrap; justify-content: center; }
+  .topbar__meta { order: 3; border-left: 0; border-right: 0; padding: 6px 0 10px; }
+}
+
+@media (max-width: 640px) {
+  .topbar__actions .btn--ghost { display: none; }
+
+  .cards { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .leadform .grid { grid-template-columns: 1fr; }
+  .quick-grid { grid-template-columns: 1fr; }
+  .imgbreaks { grid-template-columns: 1fr; }
+
+  /* hero photos stack nicer on mobile */
+  .hero__media{ height: 220px; }
+  .hero__photos{ grid-template-columns: 1fr; }
+  .hero__inner{ padding-top: 160px; }
+
+  /* MOBILE CTA: stack + make primary easy to tap */
+  .hero__cta{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .hero__cta .btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* show sticky mobile bar */
+  .mobilebar{ display: flex; }
 }
