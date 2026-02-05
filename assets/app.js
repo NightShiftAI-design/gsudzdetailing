@@ -1,14 +1,12 @@
 /* =========================
    GSUDZ DETAILING — V4 APP
    - Gallery render + filters + lightbox
-   - Form tabs (book/quote) + presets (works with simplified form)
+   - Simplified lead form (no addonsBox/quoteBox)
+   - Form tabs still supported (just sets hidden formType)
+   - Form presets still supported (fills Service dropdown)
    - Formspree submit UX + honeypot
    - Hero bubbles + cursor ripples (rate-limited)
-   - NEW:
-        • supports simplified form (no addonsBox/quoteBox)
-        • auto-switch tab based on selected service / vehicle type
-        • keeps presets working
-        • keeps anchor offset scroll
+   - Smooth-scroll offset for sticky header
    ========================= */
 
 (() => {
@@ -221,36 +219,12 @@
 
   renderGallery("all");
 
-  // ---------- Form Tabs + behavior (simplified form) ----------
+  // ---------- Form tabs + presets ----------
   const tabs = $$(".tab");
   const leadForm = $("#leadForm");
   const formTypeInput = $("#formType");
 
-  const BOOK_SERVICES = new Set([
-    "Premium Exterior Wash",
-    "Extensive Interior Detail",
-    "Full Detail"
-  ]);
-
-  function isQuoteSelection(vehicleTypeValue, serviceValue) {
-    const v = (vehicleTypeValue || "").toLowerCase();
-    const s = (serviceValue || "").toLowerCase();
-
-    // If they pick RV/Boat/Motorcycle/Other, it's quote flow
-    if (v.includes("rv") || v.includes("boat") || v.includes("motorcycle") || v.includes("other")) return true;
-
-    // If service is not one of the 3 priced packages, it's quote flow
-    if (serviceValue && !BOOK_SERVICES.has(serviceValue)) return true;
-
-    // Explicit quote option
-    if (s.includes("quote")) return true;
-
-    return false;
-  }
-
   function setTab(mode) {
-    if (!leadForm) return;
-
     tabs.forEach(t => {
       const isActive = t.dataset.tab === mode;
       t.classList.toggle("is-active", isActive);
@@ -259,16 +233,19 @@
 
     if (formTypeInput) formTypeInput.value = mode;
 
-    // With simplified form, ALL fields remain required as designed in HTML.
-    // We just use tab for intent + copy and for Formspree "formType".
+    // Optional: set helpful defaults when switching
+    const service = leadForm?.querySelector('select[name="service"]');
+    if (service && mode === "quote") {
+      // If they go to quote tab and service is empty, steer toward quote option
+      if (!service.value) service.value = "RV / Marine / Motorcycle Quote";
+    }
   }
 
-  // Tab click
   tabs.forEach((t) => {
     t.addEventListener("click", () => setTab(t.dataset.tab || "book"));
   });
 
-  // Elements that request a tab mode (buttons across page)
+  // Any element with data-tab="quote" or "book" can switch the tab
   $$("[data-tab]").forEach((el) => {
     el.addEventListener("click", () => {
       const mode = el.getAttribute("data-tab");
@@ -276,7 +253,7 @@
     });
   });
 
-  // Preset buttons still set the service
+  // Presets fill the Service dropdown and flip to book
   $$("[data-preset]").forEach((btn) => {
     btn.addEventListener("click", () => {
       setTab("book");
@@ -289,31 +266,11 @@
         if (preset === "full") service.value = "Full Detail";
       }
 
-      // If they set a package, keep it in book tab
-      if (formTypeInput) formTypeInput.value = "book";
-
       setTimeout(() => leadForm?.querySelector('input[name="name"]')?.focus(), 150);
     });
   });
 
-  // Auto-switch to quote tab if they select quote-ish options
-  function initAutoTabSwitch() {
-    if (!leadForm) return;
-
-    const vehicleType = leadForm.querySelector('select[name="vehicleType"]');
-    const service = leadForm.querySelector('select[name="service"]');
-
-    function evaluate() {
-      const mode = isQuoteSelection(vehicleType?.value, service?.value) ? "quote" : "book";
-      setTab(mode);
-    }
-
-    if (vehicleType) vehicleType.addEventListener("change", evaluate);
-    if (service) service.addEventListener("change", evaluate);
-  }
-
   setTab("book");
-  initAutoTabSwitch();
 
   // ---------- Formspree submit UX ----------
   const statusEl = $("#formStatus");
@@ -338,14 +295,6 @@
     }
 
     const formData = new FormData(leadForm);
-
-    // Add helpful subject line in Formspree email (optional)
-    const service = (formData.get("service") || "").toString();
-    const vehicle = (formData.get("vehicleType") || "").toString();
-    const mode = (formData.get("formType") || "").toString();
-
-    // Formspree supports custom fields; this helps readability
-    formData.set("_subject", `Gsudz Lead: ${service || "Service"} (${vehicle || "Vehicle"}) — ${mode.toUpperCase()}`);
 
     try {
       if (statusEl) statusEl.textContent = "Sending…";
