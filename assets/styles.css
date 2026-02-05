@@ -668,3 +668,83 @@ a:hover { opacity: .98; }
   .hero__photos{ grid-template-columns: 1fr; }
   .hero__inner{ padding-top: 160px; }
 }
+/* --- Brand logo image (replaces GS text) --- */
+.brand__logo{
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14), var(--shadow-soft);
+  background: rgba(255,255,255,0.04);
+}
+
+/* --- Footer centered + icon buttons --- */
+.footer{
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  padding: 36px 0;
+}
+
+.footer__inner--center{
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.footer__brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer__logo{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid rgba(215,222,232,0.14);
+  background: rgba(255,255,255,0.04);
+}
+
+.footer__name{
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.footer__actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.iconbtn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: rgba(233,238,247,0.92);
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.iconbtn svg{
+  opacity: .95;
+}
+
+.iconbtn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  background: rgba(255,255,255,0.05);
+}
+
+.footer__fine{
+  max-width: 720px;
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
