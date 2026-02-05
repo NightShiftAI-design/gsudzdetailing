@@ -34,7 +34,7 @@
         </span>
       </a>
 
-      <!-- Hours (new) -->
+      <!-- Hours -->
       <div class="topbar__meta" aria-label="Business hours">
         <span class="topbar__hours">Hours: <strong>7:00 AM – 5:00 PM</strong> (Mon–Fri)</span>
       </div>
@@ -97,13 +97,13 @@
             </div>
           </div>
 
+          <!-- HERO CTAs (simplified) -->
           <div class="hero__cta">
-            <a class="btn btn--accent" href="#book">Get Quote / Book</a>
-            <a class="btn btn--glass" href="#packages">See Packages</a>
-            <a class="btn btn--ghost" href="https://www.facebook.com/profile.php?id=61561183088796" target="_blank" rel="noopener">View Facebook</a>
+            <a class="btn btn--accent" href="#book">Get a Fast Quote</a>
+            <a class="btn btn--ghost" href="#packages">See Packages</a>
           </div>
 
-          <!-- Trust pills (Always Open removed) -->
+          <!-- Trust pills -->
           <div class="hero__trust">
             <div class="pill">Mobile • Pick-up • Drop-off</div>
             <div class="pill">900+ Followers</div>
@@ -144,10 +144,10 @@
                 <span class="quick__sub">Exterior, interior, full detail</span>
               </a>
 
-              <a class="quick" href="#specialty">
+              <a class="quick" href="#ceramic">
                 <span class="quick__icon" aria-hidden="true">✨</span>
-                <span class="quick__title">Ceramic & Paint</span>
-                <span class="quick__sub">Protection + correction</span>
+                <span class="quick__title">Ceramic Protection</span>
+                <span class="quick__sub">GYEON + prep process</span>
               </a>
 
               <a class="quick" href="#rvmarine">
@@ -163,7 +163,7 @@
 
             <div class="stack">
               <a class="btn btn--primary" href="sms:+14233941698?&body=Hi%20Gsudz%20Detailing%2C%20I%27d%20like%20a%20quote.%20My%20vehicle%20is%3A%20_____%20Service%20wanted%3A%20_____%20My%20location%3A%20_____%20Preferred%20date%2Ftime%3A%20_____.">Text for Quote</a>
-              <a class="btn btn--glass" href="#book">Book an Appointment</a>
+              <a class="btn btn--glass" href="#book">Request Booking</a>
             </div>
           </div>
         </div>
@@ -241,8 +241,45 @@
       </div>
     </section>
 
+    <!-- CERAMIC SUMMARY BLOCK (new) -->
+    <section id="ceramic" class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="h2">Premium Ceramic Protection</h2>
+          <p class="muted">Industry-leading protection with a deep, long-lasting finish — ideal for daily drivers and enthusiasts.</p>
+        </div>
+
+        <div class="cards cards--2">
+          <article class="card">
+            <h3 class="h3">GYEON INFINITE Ceramic Coating</h3>
+            <p class="muted">
+              Our GYEON INFINITE Ceramic Coating service delivers industry-leading protection with an exceptional, long-lasting finish.
+              This process begins with a thorough exterior wash to remove surface dirt and grime, followed by full decontamination to eliminate
+              embedded contaminants that compromise paint clarity and longevity. We then perform precise water-spot removal.
+            </p>
+            <p class="fineprint">Starting at <strong>$800</strong>. Final pricing depends on vehicle size + paint condition.</p>
+            <div class="card__cta">
+              <a class="btn btn--primary" href="#book">Request Ceramic Quote</a>
+              <a class="btn btn--ghost" href="sms:+14233941698?&body=Hi%20Gsudz%20Detailing%2C%20I%27d%20like%20a%20ceramic%20coating%20quote.%20Vehicle%3A%20_____%20Condition%3A%20_____%20Location%3A%20_____%20Preferred%20day%2Ftime%3A%20_____.">Text</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 class="h3">Popular Add-Ons</h3>
+            <ul class="list">
+              <li>Glass & wheel coatings (price varies)</li>
+              <li>Decon wash & prep</li>
+              <li>Single-stage polish or multi-step correction (quote)</li>
+              <li>Maintenance plan to keep it perfect</li>
+            </ul>
+            <p class="muted">Not sure what you need? Send photos — we’ll guide you fast.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Specialty -->
-    <section id="specialty" class="section section--alt">
+    <section id="specialty" class="section">
       <div class="container">
         <div class="section-head">
           <h2 class="h2">Specialty Services</h2>
@@ -382,8 +419,14 @@
           <div class="panel">
             <h2 class="h2">Service Area</h2>
             <p class="muted">
-              Based in <strong>Dayton, TN</strong>. Serving Rhea County and nearby areas including Spring City and marina jobs around Bluewater.
+              Based in <strong>Dayton, TN</strong>. Serving Rhea County + nearby areas.
             </p>
+            <ul class="list list--icons">
+              <li><span class="ico" aria-hidden="true">📍</span> Dayton • Spring City • Rhea County</li>
+              <li><span class="ico" aria-hidden="true">🚤</span> Marina jobs around Bluewater</li>
+              <li><span class="ico" aria-hidden="true">🚗</span> Mobile, pick-up, or drop-off</li>
+            </ul>
+
             <div class="pill-row">
               <span class="pill">Mobile service</span>
               <span class="pill">Pick-up</span>
@@ -407,127 +450,65 @@
     <section id="book" class="section">
       <div class="container">
         <div class="section-head">
-          <h2 class="h2">Book / Get Quote</h2>
+          <h2 class="h2">Request a Quote / Book</h2>
+          <p class="muted">Quick form — we’ll follow up fast to confirm details and pricing.</p>
         </div>
 
         <div class="form-shell">
           <div class="tabs" role="tablist" aria-label="Booking tabs">
-            <button class="tab is-active" role="tab" aria-selected="true" data-tab="book" type="button">Instant Price + Book (Cars)</button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="quote" type="button">Get Quote (RVs/Boats/Bikes/Plans)</button>
+            <button class="tab is-active" role="tab" aria-selected="true" data-tab="book" type="button">Cars & Trucks</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="quote" type="button">RVs • Boats • Bikes • Plans</button>
           </div>
 
           <form id="leadForm" class="leadform" method="POST" action="FORMSPREE_ENDPOINT">
             <input type="text" name="website" id="website" autocomplete="off" tabindex="-1" aria-hidden="true" class="hp" />
             <input type="hidden" name="formType" id="formType" value="book" />
 
-            <div class="grid">
+            <div class="grid grid--simple">
               <label class="field">
                 <span>Name</span>
                 <input name="name" type="text" required placeholder="Your name" />
               </label>
 
               <label class="field">
-                <span>Phone (textable)</span>
+                <span>Phone (required)</span>
                 <input name="phone" type="tel" required placeholder="(423) ___-____" />
-              </label>
-
-              <label class="field">
-                <span>Email (optional)</span>
-                <input name="email" type="email" placeholder="you@email.com" />
               </label>
 
               <label class="field" id="vehicleTypeField">
                 <span>Vehicle Type</span>
-                <select name="vehicleType">
+                <select name="vehicleType" required>
                   <option value="">Select…</option>
                   <option>Coupe</option>
                   <option>Sedan</option>
                   <option>Mid-size SUV</option>
                   <option>3-row SUV</option>
                   <option>Truck</option>
+                  <option>RV / Motorhome</option>
+                  <option>Boat / Pontoon</option>
+                  <option>Motorcycle</option>
+                  <option>Other</option>
                 </select>
               </label>
 
               <label class="field" id="serviceField">
                 <span>Service</span>
-                <select name="service">
+                <select name="service" required>
                   <option value="">Select…</option>
                   <option>Premium Exterior Wash</option>
                   <option>Extensive Interior Detail</option>
                   <option>Full Detail</option>
+                  <option>Ceramic Coating</option>
+                  <option>Paint Correction</option>
+                  <option>Maintenance Plan</option>
+                  <option>RV / Marine / Motorcycle Quote</option>
                 </select>
               </label>
-
-              <label class="field" id="methodField">
-                <span>Service Method</span>
-                <select name="method">
-                  <option value="">Select…</option>
-                  <option>Mobile (come to me)</option>
-                  <option>Pick-up</option>
-                  <option>Drop-off</option>
-                </select>
-              </label>
-
-              <label class="field">
-                <span>Address / Area</span>
-                <input name="location" type="text" required placeholder="Dayton / Spring City / etc." />
-              </label>
-
-              <label class="field">
-                <span>Preferred day/time</span>
-                <input name="preferredTime" type="text" placeholder="e.g., Sat morning, weekday after 5pm" />
-              </label>
-            </div>
-
-            <div class="addons-box" id="addonsBox">
-              <p class="muted"><strong>Add-ons</strong> (optional)</p>
-              <div class="checks">
-                <label><input type="checkbox" name="addons" value="Engine bay or truck bed (+$40)"> Engine bay or truck bed (+$40)</label>
-                <label><input type="checkbox" name="addons" value="8-month paste wax (+$80–$120)"> 8-month paste wax (+$80–$120)</label>
-                <label><input type="checkbox" name="addons" value="Single-step compound/polish (+$300)"> Single-step compound/polish (+$300)</label>
-                <label><input type="checkbox" name="addons" value="Ceramic coating (starting at $800)"> Ceramic coating (starting at $800)</label>
-                <label><input type="checkbox" name="addons" value="Dog hair removal (+$15)"> Dog hair removal (+$15)</label>
-                <label><input type="checkbox" name="addons" value="Heavy mess (+$20)"> Heavy mess (+$20)</label>
-                <label><input type="checkbox" name="addons" value="Ozone odor treatment (+$80)"> Ozone odor treatment (+$80)</label>
-              </div>
-              <p class="fineprint">Final price varies by vehicle size & paint condition.</p>
-            </div>
-
-            <div class="quote-box" id="quoteBox" hidden>
-              <div class="grid">
-                <label class="field">
-                  <span>Quote Category</span>
-                  <select name="quoteCategory">
-                    <option value="">Select…</option>
-                    <option>RV / Motorhome</option>
-                    <option>Boat / Pontoon</option>
-                    <option>Motorcycle</option>
-                    <option>Maintenance Plan</option>
-                    <option>Paint Correction</option>
-                    <option>Fleet / Multiple Vehicles</option>
-                  </select>
-                </label>
-
-                <label class="field">
-                  <span>Size / Make / Model</span>
-                  <input name="quoteVehicle" type="text" placeholder="e.g., 44ft Dutch Star / Sea Ray 52 / Harley Road Glide" />
-                </label>
-
-                <label class="field">
-                  <span>Condition</span>
-                  <select name="condition">
-                    <option value="">Select…</option>
-                    <option>Light</option>
-                    <option>Medium</option>
-                    <option>Heavy</option>
-                  </select>
-                </label>
-              </div>
             </div>
 
             <label class="field">
-              <span>Notes</span>
-              <textarea name="notes" rows="4" placeholder="Anything we should know? Pet hair, stains, oxidation, storage, etc."></textarea>
+              <span>Message (optional)</span>
+              <textarea name="notes" rows="4" placeholder="Anything helpful? Location/area, condition, add-ons, preferred day/time, etc."></textarea>
             </label>
 
             <div class="form-actions">
@@ -536,7 +517,7 @@
             </div>
 
             <p class="fineprint">
-              By submitting, you agree we can contact you by text/call to confirm details. Quotes required for RV/Marine/Bike, maintenance plans, and correction work.
+              By submitting, you agree we can contact you by text/call to confirm details. Quotes required for RV/Marine/Motorcycle, maintenance plans, and correction work.
             </p>
 
             <div id="formStatus" class="status" role="status" aria-live="polite"></div>
@@ -546,7 +527,7 @@
     </section>
   </main>
 
-  <!-- Footer (Centered + icon buttons, no emojis) -->
+  <!-- Footer (Centered + icon buttons) -->
   <footer class="footer">
     <div class="container footer__inner footer__inner--center">
       <a class="footer__brand" href="#top" aria-label="Back to top">
