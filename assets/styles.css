@@ -896,3 +896,66 @@ a:hover { opacity: .98; }
   /* show sticky mobile bar */
   .mobilebar{ display: flex; }
 }
+/* -------------------------
+   NEW helpers used by updated index.html
+   ------------------------- */
+
+/* 2-column cards block (used in Ceramic section) */
+.cards--2 { grid-template-columns: repeat(2, 1fr); }
+
+/* Simpler form grid spacing (same 2-col, but slightly tighter) */
+.grid--simple { margin-top: 6px; }
+
+/* Steps list styling (your CSS didn’t include this yet) */
+.steps{
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-1);
+  line-height: 1.7;
+}
+.steps li{ margin-bottom: 10px; }
+.steps strong{ color: var(--text-0); }
+
+/* Sticky mobile bar (if not already present in your file) */
+.mobilebar{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 60;
+  display: none;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(10,14,20,0.74);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-hard);
+}
+.mobilebar__btn{
+  flex: 1;
+  text-align: center;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text-0);
+  font-weight: 700;
+}
+.mobilebar__btn--accent{
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), rgba(111,231,208,0.82));
+  color: #06201A;
+}
+
+/* Only show mobile bar on small screens */
+@media (max-width: 760px){
+  .mobilebar{ display: flex; }
+  /* Prevent footer/form from being covered by mobilebar */
+  body { padding-bottom: 92px; }
+}
+
+/* Responsive: cards--2 should stack on small screens */
+@media (max-width: 800px){
+  .cards--2{ grid-template-columns: 1fr; }
+}
