@@ -40,20 +40,29 @@
   }
 
   // ---------- Gallery ----------
-  const galleryItems = [
-    { id: "g1", cat: "cars", src: "assets/gallery/corolla2after.JPG", alt: "Corolla after detailing" },
-    { id: "g2", cat: "cars", src: "assets/gallery/gwagensideshotafter.JPG", alt: "G-Wagon after detailing" },
-    { id: "g3", cat: "cars", src: "assets/gallery/sexycar3.JPG", alt: "Car after detailing" },
-    { id: "g4",  cat: "rvmarine",  src: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=60", alt: "Boat / marine scene" },
-    { id: "g5",  cat: "cars",      src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=60", alt: "Performance car detail" },
-    { id: "g6",  cat: "bikes",     src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60", alt: "Motorcycle detailed" },
-    { id: "g7",  cat: "trucks",    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=60", alt: "Clean vehicle exterior" },
-    { id: "g8",  cat: "interiors", src: "https://images.unsplash.com/photo-1503377988381-1bfae7e3d1b1?auto=format&fit=crop&w=1400&q=60", alt: "Interior detail" },
-    { id: "g9",  cat: "rvmarine",  src: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1400&q=60", alt: "RV / camper vibe" },
-    { id: "g10", cat: "cars",      src: "https://images.unsplash.com/photo-1517148815978-75f6acaaf32c?auto=format&fit=crop&w=1400&q=60", alt: "Car wash foam" },
-    { id: "g11", cat: "bikes",     src: "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1400&q=60", alt: "Motorcycle close-up" },
-    { id: "g12", cat: "trucks",    src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60", alt: "Detailing work (placeholder)" },
-  ];
+ const galleryItems = [
+  // Cars
+  { id: "c1", cat: "cars", src: "assets/gallery/corolla2after.JPG", alt: "Corolla after detailing" },
+  { id: "c2", cat: "cars", src: "assets/gallery/corvette2after.JPG", alt: "Corvette after detailing" },
+  { id: "c3", cat: "cars", src: "assets/gallery/elantraexterior.JPG", alt: "Hyundai Elantra exterior detail" },
+  { id: "c4", cat: "cars", src: "assets/gallery/gwagensideshotafter.JPG", alt: "G-Wagon after detailing" },
+  { id: "c5", cat: "cars", src: "assets/gallery/sexycar3.JPG", alt: "Performance car after detailing" },
+
+  // Trucks/SUVs
+  { id: "t1", cat: "trucks", src: "assets/gallery/ramtruck3after.JPG", alt: "RAM truck after detailing" },
+  { id: "t2", cat: "trucks", src: "assets/gallery/redbeastfront.JPG", alt: "Red truck front detail" },
+
+  // Interiors
+  { id: "i1", cat: "interiors", src: "assets/gallery/frontinteriorafter.JPG", alt: "Front interior after detailing" },
+
+  // RV / Marine
+  { id: "rv1", cat: "rvmarine", src: "assets/gallery/rv2after.JPG", alt: "RV after detailing" },
+  { id: "rv2", cat: "rvmarine", src: "assets/gallery/rv3after.JPG", alt: "RV exterior after detailing" },
+
+  // Bikes
+  { id: "b1", cat: "bikes", src: "assets/gallery/bike1after.JPG", alt: "Motorcycle after detailing" },
+  { id: "b2", cat: "bikes", src: "assets/gallery/bike2after.JPG", alt: "Motorcycle detail finish" },
+];
 
   const galleryGrid = $("#galleryGrid");
 
