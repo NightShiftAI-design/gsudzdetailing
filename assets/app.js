@@ -1,10 +1,13 @@
 /* =========================
-   GSUDZ DETAILING — V2 APP
+   GSUDZ DETAILING — V3 APP
    - Gallery render + filters + lightbox
-   - Form tabs (book/quote)
-   - Presets (exterior/interior/full)
+   - Form tabs (book/quote) + presets
    - Formspree submit UX + honeypot
-   - Hero floating bubbles + cursor ripple bubbles (rate-limited)
+   - Hero bubbles + cursor ripples (rate-limited)
+   - NEW: small “pro” polish:
+        • no duplicate keydown listeners
+        • safer null checks
+        • optional smooth-scroll offset for sticky header
    ========================= */
 
 (() => {
@@ -13,20 +16,43 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
+  // ---------- Optional: smooth scroll with sticky header offset ----------
+  // (Only affects clicks on in-page anchors like #packages/#book.)
+  function initAnchorOffsetScroll() {
+    const header = $(".topbar");
+    const offset = header ? header.offsetHeight + 12 : 76;
+
+    $$('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        if (!href || href === "#") return;
+
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({ top, behavior: "smooth" });
+        history.pushState(null, "", href);
+      });
+    });
+  }
+
   // ---------- Gallery ----------
   const galleryItems = [
-    { id: "g1", cat: "cars",      src: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=60", alt: "Glossy car paint" },
-    { id: "g2", cat: "trucks",    src: "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=60", alt: "Truck exterior" },
-    { id: "g3", cat: "interiors", src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1400&q=60", alt: "Interior cleaned" },
-    { id: "g4", cat: "rvmarine",  src: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=60", alt: "Boat / marine scene" },
-    { id: "g5", cat: "cars",      src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=60", alt: "Performance car detail" },
-    { id: "g6", cat: "bikes",     src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60", alt: "Motorcycle detailed" },
-    { id: "g7", cat: "trucks",    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=60", alt: "Clean car exterior" },
-    { id: "g8", cat: "interiors", src: "https://images.unsplash.com/photo-1503377988381-1bfae7e3d1b1?auto=format&fit=crop&w=1400&q=60", alt: "Interior detail" },
-    { id: "g9", cat: "rvmarine",  src: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1400&q=60", alt: "RV / camper vibe" },
-    { id: "g10",cat: "cars",      src: "https://images.unsplash.com/photo-1517148815978-75f6acaaf32c?auto=format&fit=crop&w=1400&q=60", alt: "Car wash foam" },
-    { id: "g11",cat: "bikes",     src: "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1400&q=60", alt: "Motorcycle close-up" },
-    { id: "g12",cat: "trucks",    src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60", alt: "Detailing work (placeholder)" },
+    { id: "g1",  cat: "cars",      src: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=60", alt: "Glossy car paint" },
+    { id: "g2",  cat: "trucks",    src: "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=60", alt: "Truck exterior" },
+    { id: "g3",  cat: "interiors", src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1400&q=60", alt: "Interior cleaned" },
+    { id: "g4",  cat: "rvmarine",  src: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=60", alt: "Boat / marine scene" },
+    { id: "g5",  cat: "cars",      src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=60", alt: "Performance car detail" },
+    { id: "g6",  cat: "bikes",     src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60", alt: "Motorcycle detailed" },
+    { id: "g7",  cat: "trucks",    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=60", alt: "Clean vehicle exterior" },
+    { id: "g8",  cat: "interiors", src: "https://images.unsplash.com/photo-1503377988381-1bfae7e3d1b1?auto=format&fit=crop&w=1400&q=60", alt: "Interior detail" },
+    { id: "g9",  cat: "rvmarine",  src: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1400&q=60", alt: "RV / camper vibe" },
+    { id: "g10", cat: "cars",      src: "https://images.unsplash.com/photo-1517148815978-75f6acaaf32c?auto=format&fit=crop&w=1400&q=60", alt: "Car wash foam" },
+    { id: "g11", cat: "bikes",     src: "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1400&q=60", alt: "Motorcycle close-up" },
+    { id: "g12", cat: "trucks",    src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60", alt: "Detailing work (placeholder)" },
   ];
 
   const galleryGrid = $("#galleryGrid");
@@ -55,11 +81,17 @@
     });
   }
 
-  // Lightbox
+  // ---------- Lightbox ----------
   let lightboxEl = null;
 
-  function openLightbox(src, alt) {
+  function closeLightbox() {
     if (lightboxEl) lightboxEl.remove();
+    lightboxEl = null;
+    document.body.style.overflow = "";
+  }
+
+  function openLightbox(src, alt) {
+    closeLightbox();
 
     lightboxEl = document.createElement("div");
     lightboxEl.style.position = "fixed";
@@ -110,14 +142,15 @@
     close.style.padding = "8px 12px";
     close.style.borderRadius = "999px";
 
-    close.addEventListener("click", () => lightboxEl?.remove());
+    close.addEventListener("click", closeLightbox);
     lightboxEl.addEventListener("click", (e) => {
-      if (e.target === lightboxEl) lightboxEl.remove();
+      if (e.target === lightboxEl) closeLightbox();
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") lightboxEl?.remove();
-    }, { once: true });
+    const onKey = (e) => {
+      if (e.key === "Escape") closeLightbox();
+    };
+    document.addEventListener("keydown", onKey, { once: true });
 
     bar.appendChild(cap);
     bar.appendChild(close);
@@ -126,6 +159,9 @@
     inner.appendChild(bar);
     lightboxEl.appendChild(inner);
     document.body.appendChild(lightboxEl);
+
+    // prevent background scroll while open
+    document.body.style.overflow = "hidden";
   }
 
   // Filter chips
@@ -148,6 +184,8 @@
   const addonsBox = $("#addonsBox");
 
   function setTab(mode) {
+    if (!leadForm) return;
+
     tabs.forEach(t => {
       const isActive = t.dataset.tab === mode;
       t.classList.toggle("is-active", isActive);
@@ -158,8 +196,8 @@
     if (quoteBox) quoteBox.hidden = (mode !== "quote");
     if (addonsBox) addonsBox.style.display = (mode === "quote") ? "none" : "block";
 
-    const vehicleType = leadForm?.querySelector('select[name="vehicleType"]');
-    const service = leadForm?.querySelector('select[name="service"]');
+    const vehicleType = leadForm.querySelector('select[name="vehicleType"]');
+    const service = leadForm.querySelector('select[name="service"]');
 
     if (vehicleType) vehicleType.required = (mode === "book");
     if (service) service.required = (mode === "book");
@@ -202,6 +240,7 @@
     e.preventDefault();
     if (!leadForm) return;
 
+    // Bot trap
     if (honeypot && honeypot.value.trim().length > 0) {
       if (statusEl) statusEl.textContent = "✅ Thanks — we’ll text you shortly.";
       leadForm.reset();
@@ -215,6 +254,8 @@
     }
 
     const formData = new FormData(leadForm);
+
+    // Make checkboxes readable in Formspree emails
     const addons = formData.getAll("addons");
     if (addons.length) formData.set("addonsSummary", addons.join(", "));
 
@@ -254,12 +295,12 @@
       const b = document.createElement("div");
       b.className = "bubble";
 
-      const size = rand(10, 28);
+      const size = rand(10, 26);
       const left = rand(0, 100);
       const delay = rand(0, 6);
-      const dur = rand(14, 28);
+      const dur = rand(16, 30);
       const blur = rand(0, 4);
-      const op = rand(0.07, 0.16);
+      const op = rand(0.06, 0.13);
 
       b.style.width = `${size}px`;
       b.style.height = `${size}px`;
@@ -278,15 +319,15 @@
         position:absolute;
         bottom:-40px;
         border-radius:999px;
-        border:1px solid rgba(255,255,255,0.16);
-        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(255,255,255,0.05) 55%, rgba(255,255,255,0.02));
+        border:1px solid rgba(255,255,255,0.14);
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.16), rgba(255,255,255,0.05) 55%, rgba(255,255,255,0.02));
         animation: floatUp linear infinite;
         transform: translateZ(0);
         pointer-events:none;
       }
       @keyframes floatUp{
         0%   { transform: translate3d(0, 0, 0) scale(1); }
-        100% { transform: translate3d(${rand(-22, 22)}px, -900px, 0) scale(1.1); }
+        100% { transform: translate3d(${rand(-18, 18)}px, -900px, 0) scale(1.08); }
       }
     `;
     document.head.appendChild(style);
@@ -313,7 +354,7 @@
       const b = document.createElement("div");
       b.className = "ripple-bubble";
 
-      const size = rand(14, 32);
+      const size = rand(14, 30);
       b.style.width = `${size}px`;
       b.style.height = `${size}px`;
       b.style.left = `${(x / rect.width) * 100}%`;
@@ -342,6 +383,8 @@
     }, { passive: true });
   }
 
+  // init
+  initAnchorOffsetScroll();
   initBubbles();
   initCursorRipples();
 })();
