@@ -41,9 +41,9 @@
 
   // ---------- Gallery ----------
   const galleryItems = [
-    { id: "g1",  cat: "cars",      src: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=60", alt: "Glossy car paint" },
-    { id: "g2",  cat: "trucks",    src: "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=60", alt: "Truck exterior" },
-    { id: "g3",  cat: "interiors", src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1400&q=60", alt: "Interior cleaned" },
+    { id: "g1", cat: "cars", src: "assets/gallery/corolla2after.JPG", alt: "Corolla after detailing" },
+    { id: "g2", cat: "cars", src: "assets/gallery/gwagensideshotafter.JPG", alt: "G-Wagon after detailing" },
+    { id: "g3", cat: "cars", src: "assets/gallery/sexycar3.JPG", alt: "Car after detailing" },
     { id: "g4",  cat: "rvmarine",  src: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=60", alt: "Boat / marine scene" },
     { id: "g5",  cat: "cars",      src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=60", alt: "Performance car detail" },
     { id: "g6",  cat: "bikes",     src: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60", alt: "Motorcycle detailed" },
