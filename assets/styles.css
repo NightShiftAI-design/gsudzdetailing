@@ -237,6 +237,7 @@ a:hover { opacity: .98; }
   z-index: 0;
   pointer-events: none;
 }
+
 .hero__photos{
   height: 100%;
   display: grid;
@@ -244,16 +245,25 @@ a:hover { opacity: .98; }
   gap: 8px;
   padding: 10px 10px 0 10px;
 }
+
+/* IMPORTANT: give each photo a predictable height so it crops nicely */
 .hero__photo{
   border-radius: 14px;
   border: 1px solid rgba(215,222,232,0.12);
   background: #0b1220;
   box-shadow: 0 18px 48px rgba(0,0,0,0.45);
   overflow: hidden;
+
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
   filter: saturate(0.95) contrast(1.05);
   opacity: 0.95;
+
+  /* NEW: stable height */
+  height: 100%;
+  min-height: 120px;
 }
 
 /* styles.css lives in /assets, so this maps to /assets/gallery/... ✅ */
@@ -590,13 +600,6 @@ a:hover { opacity: .98; }
   background: #0b1220;
   filter: saturate(0.95) contrast(1.05);
 }
-  width: 100%;
-  height: 210px;
-  background:
-    radial-gradient(650px 240px at 70% 30%, rgba(43,91,187,0.20), transparent 60%),
-    radial-gradient(650px 240px at 20% 20%, rgba(111,231,208,0.10), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.10));
-}
 
 /* =========================
    Gallery
@@ -889,6 +892,7 @@ a:hover { opacity: .98; }
   font-size: 13px;
   line-height: 1.5;
 }
+
 /* =========================
    Footer legal (Privacy link)
    ========================= */
@@ -962,6 +966,7 @@ a:hover { opacity: .98; }
   body { padding-bottom: 92px; } /* prevent mobilebar overlap */
 }
 
+/* MOBILE HERO FIX: 1 big banner + 2 tiles */
 @media (max-width: 640px) {
   .topbar__actions .btn--ghost { display: none; }
 
@@ -971,10 +976,31 @@ a:hover { opacity: .98; }
   .quick-grid { grid-template-columns: 1fr; }
   .imgbreaks { grid-template-columns: 1fr; }
 
-  /* hero photos stack nicer on mobile */
-  .hero__media{ height: 220px; }
-  .hero__photos{ grid-template-columns: 1fr; }
-  .hero__inner{ padding-top: 160px; }
+  /* NEW: give hero media more room */
+  .hero__media{ height: clamp(260px, 36vh, 360px); }
+
+  /* NEW: 2-column grid */
+  .hero__photos{
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 10px 12px 0 12px;
+  }
+
+  /* NEW: explicit tile heights */
+  .hero__photo{
+    min-height: 0; /* override desktop */
+    height: clamp(110px, 22vw, 160px);
+    border-radius: 16px;
+  }
+
+  /* big top banner */
+  .hero__photo--1{
+    grid-column: 1 / -1;
+    height: clamp(140px, 34vw, 220px);
+    background-position: 50% 35%;
+  }
+
+  .hero__inner{ padding-top: 170px; }
 
   /* MOBILE CTA: stack + make primary easy to tap */
   .hero__cta{
