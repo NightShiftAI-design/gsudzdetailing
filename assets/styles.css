@@ -1,14 +1,10 @@
 /* =========================
-   GSUDZ DETAILING — V4 STYLES
-   - Polished / professional (less bright)
-   - Hero photo strip + hours line
-   - FIX: addon "road line" tags -> clean pills
-   - NEW: image break grid (visual flow)
-   - NEW: service area list w/ icon/map card
-   - NEW: mobile CTA stacking + sticky mobile bar styles
-   - UPDATED: simplified form (no addonsBox/quoteBox/checks)
-   - NEW: addons collapse + toggle (for Packages cards)
-   - NEW: clean dot icon helper (no emojis)
+   GSUDZ DETAILING — V5 STYLES (UPDATED)
+   - Keeps your V4 aesthetic (dark, premium, muted)
+   - FIX: Mobile hero no longer gets covered by text (media becomes a real block)
+   - FIX: Interior hero image no longer looks "too zoomed" (crop tuning + contain fallback)
+   - Cleaner hero image selection (premium + mobile-friendly)
+   - Keeps all your existing class names/structure
    ========================= */
 
 :root {
@@ -229,11 +225,11 @@ a:hover { opacity: .98; }
    ========================= */
 .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
 
-/* hero media strip */
+/* hero media strip (desktop/tablet) */
 .hero__media{
   position: absolute;
   inset: 0 0 auto 0;
-  height: clamp(220px, 34vh, 360px);
+  height: clamp(240px, 36vh, 420px);
   z-index: 0;
   pointer-events: none;
 }
@@ -246,7 +242,7 @@ a:hover { opacity: .98; }
   padding: 10px 10px 0 10px;
 }
 
-/* IMPORTANT: give each photo a predictable height so it crops nicely */
+/* IMPORTANT: stable crop */
 .hero__photo{
   border-radius: 14px;
   border: 1px solid rgba(215,222,232,0.12);
@@ -261,15 +257,18 @@ a:hover { opacity: .98; }
   filter: saturate(0.95) contrast(1.05);
   opacity: 0.95;
 
-  /* NEW: stable height */
   height: 100%;
-  min-height: 120px;
+  min-height: 140px;
 }
 
-/* styles.css lives in /assets, so this maps to /assets/gallery/... ✅ */
-.hero__photo--1 { background-image: url("gallery/gwagensideshotafter.JPG"); }
-.hero__photo--2 { background-image: url("gallery/corvette2after.JPG"); }
-.hero__photo--3 { background-image: url("gallery/carinteriorafter.JPG"); }
+/* HERO IMAGE PICKS (premium + crop-friendly)
+   - 1: luxury (G-wagon)
+   - 2: performance (Corvette)
+   - 3: close-detail (door/petrol cap) instead of interior to avoid "zoomed" complaints
+*/
+.hero__photo--1 { background-image: url("gallery/gwagensideshotafter.JPG"); background-position: 50% 55%; }
+.hero__photo--2 { background-image: url("gallery/corvette2after.JPG");     background-position: 50% 50%; }
+.hero__photo--3 { background-image: url("gallery/doorafter.JPG");          background-position: 50% 45%; }
 
 .hero__overlay{
   position: absolute;
@@ -288,7 +287,7 @@ a:hover { opacity: .98; }
   grid-template-columns: 1.1fr .9fr;
   gap: 28px;
   align-items: center;
-  padding-top: clamp(140px, 16vh, 220px);
+  padding-top: clamp(160px, 18vh, 240px);
 }
 
 .hero__bubbles {
@@ -455,7 +454,6 @@ a:hover { opacity: .98; }
   overflow: hidden;
   position: relative;
 }
-
 .addons--collapsed::after{
   content:"";
   position:absolute;
@@ -464,11 +462,7 @@ a:hover { opacity: .98; }
   background: linear-gradient(180deg, rgba(10,14,20,0), rgba(10,14,20,0.92));
   pointer-events:none;
 }
-
-/* open state */
-.addons--collapsed.is-open{
-  max-height: none;
-}
+.addons--collapsed.is-open{ max-height: none; }
 .addons--collapsed.is-open::after{ display:none; }
 
 .addons-toggle{
@@ -501,7 +495,7 @@ a:hover { opacity: .98; }
   gap: 12px;
 }
 .imgbox{
-  position: relative; /* FIX: needed for ::after overlay */
+  position: relative;
   border-radius: 14px;
   border: 1px solid rgba(215,222,232,0.14);
   background: #0b1220;
@@ -543,12 +537,8 @@ a:hover { opacity: .98; }
   opacity: .35;
 }
 
-/* NEW: service list + map card */
-.service-list{
-  display: grid;
-  gap: 10px;
-  margin: 12px 0 0;
-}
+/* service list + map card */
+.service-list{ display: grid; gap: 10px; margin: 12px 0 0; }
 .service-item{
   display: grid;
   grid-template-columns: 34px 1fr;
@@ -677,7 +667,7 @@ a:hover { opacity: .98; }
 }
 
 .leadform .grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
-.grid--simple { margin-top: 6px; } /* helper used by updated index.html */
+.grid--simple { margin-top: 6px; }
 .field{ display:grid; gap:6px; }
 .field span{ font-size:12px; color: var(--text-1); }
 
@@ -893,9 +883,7 @@ a:hover { opacity: .98; }
   line-height: 1.5;
 }
 
-/* =========================
-   Footer legal (Privacy link)
-   ========================= */
+/* Footer legal (Privacy link) */
 .footer__legal{
   margin-top: 4px;
   font-size: 12px;
@@ -907,7 +895,6 @@ a:hover { opacity: .98; }
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-
 .footer__legal a:hover{
   opacity: 1;
   text-decoration-color: rgba(111,231,208,0.35);
@@ -963,10 +950,10 @@ a:hover { opacity: .98; }
   .topbar__inner { flex-wrap: wrap; justify-content: center; }
   .topbar__meta { order: 3; border-left: 0; border-right: 0; padding: 6px 0 10px; }
   .mobilebar{ display: flex; }
-  body { padding-bottom: 92px; } /* prevent mobilebar overlap */
+  body { padding-bottom: 92px; }
 }
 
-/* MOBILE HERO FIX: 1 big banner + 2 tiles */
+/* ✅ MOBILE HERO: media becomes a REAL block above copy (no overlap) */
 @media (max-width: 640px) {
   .topbar__actions .btn--ghost { display: none; }
 
@@ -976,33 +963,41 @@ a:hover { opacity: .98; }
   .quick-grid { grid-template-columns: 1fr; }
   .imgbreaks { grid-template-columns: 1fr; }
 
-  /* NEW: give hero media more room */
-  .hero__media{ height: clamp(260px, 36vh, 360px); }
-
-  /* NEW: 2-column grid */
-  .hero__photos{
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 10px 12px 0 12px;
+  /* hero media becomes part of layout */
+  .hero__media{
+    position: relative;
+    inset: auto;
+    height: auto;
+    padding: 10px 12px 0;
   }
 
-  /* NEW: explicit tile heights */
+  /* make this a single, clean banner */
+  .hero__photos{
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0;
+  }
+
   .hero__photo{
-    min-height: 0; /* override desktop */
-    height: clamp(110px, 22vw, 160px);
+    min-height: 0;
+    height: clamp(170px, 40vw, 240px);
     border-radius: 16px;
   }
 
-  /* big top banner */
-  .hero__photo--1{
-    grid-column: 1 / -1;
-    height: clamp(140px, 34vw, 220px);
-    background-position: 50% 35%;
+  /* show only the best banner on mobile */
+  .hero__photo--2,
+  .hero__photo--3{
+    display: none;
   }
 
-  .hero__inner{ padding-top: 170px; }
+  /* remove huge top padding since media is now on top */
+  .hero__inner{
+    padding-top: 26px;
+    min-height: auto;
+  }
 
-  /* MOBILE CTA: stack + make primary easy to tap */
+  /* Mobile CTA stacking (tap-friendly) */
   .hero__cta{
     display: grid;
     grid-template-columns: 1fr;
