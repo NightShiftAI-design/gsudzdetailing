@@ -267,9 +267,9 @@ a:hover { opacity: .98; }
 }
 
 /* styles.css lives in /assets, so this maps to /assets/gallery/... ✅ */
-.hero__photo--1 { background-image: url("gallery/rv2after.JPG"); }
-.hero__photo--2 { background-image: url("gallery/bike2after.JPG"); }
-.hero__photo--3 { background-image: url("gallery/gwagensideshotafter.JPG"); }
+.hero__photo--1 { background-image: url("gallery/gwagensideshotafter.JPG"); }
+.hero__photo--2 { background-image: url("gallery/corvette2after.JPG"); }
+.hero__photo--3 { background-image: url("gallery/carinteriorafter.JPG"); }
 
 .hero__overlay{
   position: absolute;
