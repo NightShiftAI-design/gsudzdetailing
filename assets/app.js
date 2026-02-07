@@ -128,10 +128,9 @@
     // --- Interiors ---
     { id: "i1", cat: "interiors", src: "assets/gallery/carinteriorafter.JPG", alt: "Car interior after detailing" },
     { id: "i2", cat: "interiors", src: "assets/gallery/carinteriorbefore.JPG", alt: "Car interior before detailing" },
-    { id: "i3", cat: "interiors", src: "assets/gallery/frontinteriorafter.JPG", alt: "Front interior after detailing" },
-    { id: "i4", cat: "interiors", src: "assets/gallery/interiorbackseatafter.JPG", alt: "Back seat after detailing" },
-    { id: "i5", cat: "interiors", src: "assets/gallery/interiorbackseatbefore.JPG", alt: "Back seat before detailing" },
-    { id: "i6", cat: "interiors", src: "assets/gallery/fordinteriorbefore.JPG", alt: "Ford interior before detailing" },
+    { id: "i3", cat: "interiors", src: "assets/gallery/interiorbackseatafter.JPG", alt: "Back seat after detailing" },
+    { id: "i4", cat: "interiors", src: "assets/gallery/interiorbackseatbefore.JPG", alt: "Back seat before detailing" },
+    { id: "i5", cat: "interiors", src: "assets/gallery/fordinteriorbefore.JPG", alt: "Ford interior before detailing" },
 
     // --- RV / Marine / Heavy equipment ---
     { id: "rv1", cat: "rvmarine", src: "assets/gallery/rv2after.JPG", alt: "RV after detailing" },
