@@ -230,7 +230,7 @@ a:hover { opacity: .98; }
   position: absolute;
   inset: 0 0 auto 0;
   height: clamp(240px, 36vh, 420px);
-  z-index: 0;
+  z-index: 1;                 /* ✅ photos above track */
   pointer-events: none;
 }
 
@@ -261,27 +261,26 @@ a:hover { opacity: .98; }
   min-height: 140px;
 }
 
-/* HERO IMAGE PICKS (premium + crop-friendly)
-   - 1: luxury (G-wagon)
-   - 2: performance (Corvette)
-   - 3: close-detail (door/petrol cap) instead of interior to avoid "zoomed" complaints
-*/
+/* HERO IMAGE PICKS (premium + crop-friendly) */
 .hero__photo--1 { background-image: url("gallery/gwagensideshotafter.JPG"); background-position: 50% 55%; }
 .hero__photo--2 { background-image: url("gallery/corvette2after.JPG");     background-position: 50% 50%; }
 .hero__photo--3 { background-image: url("gallery/doorafter.JPG");          background-position: 50% 45%; }
 
+/* darken overlay ABOVE photos */
 .hero__overlay{
   position: absolute;
   inset: 0;
+  z-index: 2;                 /* ✅ overlay above photos */
   background:
     linear-gradient(180deg, rgba(10,14,20,0.08) 0%, rgba(10,14,20,0.78) 70%, rgba(10,14,20,0.94) 100%),
     radial-gradient(700px 260px at 70% 10%, rgba(43,91,187,0.16), transparent 60%),
     radial-gradient(700px 260px at 20% 15%, rgba(111,231,208,0.08), transparent 60%);
 }
 
+/* text/content always on top */
 .hero__inner {
   position: relative;
-  z-index: 1;
+  z-index: 3;                 /* ✅ top layer */
   min-height: clamp(560px, 85vh, 820px);
   display: grid;
   grid-template-columns: 1.1fr .9fr;
@@ -290,9 +289,11 @@ a:hover { opacity: .98; }
   padding-top: clamp(160px, 18vh, 240px);
 }
 
+/* decorative bubbles BEHIND photos */
 .hero__bubbles {
   position: absolute;
   inset: -10% -10% 0 -10%;
+  z-index: 0;                 /* ✅ behind photos */
   pointer-events: none;
   background:
     radial-gradient(14px 14px at 10% 90%, rgba(255,255,255,0.10), transparent 60%),
@@ -303,9 +304,11 @@ a:hover { opacity: .98; }
   opacity: .55;
 }
 
+/* grid/track effect BEHIND photos */
 .hero__track{
   position:absolute;
   inset:-10% -10% -10% -10%;
+  z-index: 0;                 /* ✅ behind photos */
   pointer-events:none;
   opacity:.62;
   background:
