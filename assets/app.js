@@ -118,6 +118,8 @@
     { id: "c17", cat: "cars", src: "assets/gallery/sexyycar2after.JPG", alt: "Car after detailing" },
     { id: "c18", cat: "cars", src: "assets/gallery/sexyycar2before.JPG", alt: "Car before detailing" },
     { id: "c19", cat: "cars", src: "assets/gallery/comparison.JPG", alt: "Before and after comparison" },
+    { id: "c20", cat: "cars", src: "assets/gallery/IMG_0403.JPG", alt: "Car detailing result" },
+    { id: "c21", cat: "cars", src: "assets/gallery/IMG_0404.JPG", alt: "Car detailing result" },
 
     // --- Trucks/SUVs ---
     { id: "t1", cat: "trucks", src: "assets/gallery/ramtruck3after.JPG", alt: "RAM truck after detailing" },
